@@ -237,11 +237,11 @@
                                     watchTime++;
                                     if (watchTime >= 60) { // Show claim button after 60 seconds
                                         claimBtn.style.display = 'inline-block';
-                                        clearInterval(interval); // Stop tracking
                                     }
                                 }, 1000);
                             } else if (event.data === YT.PlayerState.ENDED) {
                                 clearInterval(interval);
+                                claimBtn.style.display = 'none'; // Hide claim button when video ends
                             }
                         }
                     }
