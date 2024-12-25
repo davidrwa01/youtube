@@ -149,16 +149,21 @@
         </div>
 
         <!-- Video Section -->
-        <div id="videos">
-            <h3>Watch the video and wait for the claim button to earn money!</h3>
-            <div class="video-task">
-                <iframe id="video-1" src="https://www.youtube.com/embed/aHKonkJtUbo?enablejsapi=1" allowfullscreen></iframe>
-                <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
-                <!-- YouTube Subscribe Button -->
-                <button class="youtube-btn" onclick="subscribeChannel()">Subscribe</button>
-                <button class="youtube-btn" onclick="likeVideo()">Like</button>
-                <button class="youtube-btn" onclick="commentVideo()">Comment</button>
-            </div>
+        <div class="video-task" data-video-id="aHKonkJtUbo">
+            <iframe class="video-frame" id="video-1" src="https://www.youtube.com/embed/aHKonkJtUbo?enablejsapi=1" allowfullscreen></iframe>
+            <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
+            <button class="youtube-btn" onclick="subscribeChannel()">Subscribe</button>
+            <button class="youtube-btn" onclick="likeVideo()">Like</button>
+            <button class="youtube-btn" onclick="commentVideo()">Comment</button>
+        </div>
+
+        <!-- Another Video Section -->
+        <div class="video-task" data-video-id="Biy9K9EDjDc">
+            <iframe class="video-frame" id="video-2" src="https://www.youtube.com/embed/Biy9K9EDjDc?enablejsapi=1" allowfullscreen></iframe>
+            <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
+            <button class="youtube-btn" onclick="subscribeChannel()">Subscribe</button>
+            <button class="youtube-btn" onclick="likeVideo()">Like</button>
+            <button class="youtube-btn" onclick="commentVideo()">Comment</button>
         </div>
 
         <!-- Referral Section -->
@@ -166,7 +171,6 @@
             <p class="footer-heading">🎄 Invite Friends & Spread the Cheer 🎅</p>
             <p class="footer-info">Share the festive fun and earn rewards with your friends this Christmas!</p>
             <br>
-            <!-- WhatsApp Share Button -->
             <a href="https://wa.me/?text=Check%20out%20this%20awesome%20Xmass%20Earn%20app%20at%20https://xmassearn2025.vercel.app" class="whatsapp-btn" target="_blank">Share on WhatsApp</a>
         </footer>
         
@@ -182,13 +186,7 @@
 
         // Show withdrawal instructions
         const showWithdrawInstructions = () => {
-            alert(
-                "TO GET YOUR MONEY, DO THE FOLLOWING:\n\n" +
-                "1. Subscribe to the channel.\n" +
-                "2. Watch the video till the end.\n" +
-                "3. Share to 10 groups, 50 people, and on your status.\n\n" +
-                "GOOD LUCK! Merry Xmass 🎄🎅"
-            );
+            alert("TO GET YOUR MONEY, DO THE FOLLOWING:\n\n1. Subscribe to the channel.\n2. Watch the video till the end.\n3. Share to 10 groups, 50 people, and on your status.\n\nGOOD LUCK! Merry Xmass 🎄🎅");
         };
 
         // Claim reward
@@ -214,11 +212,6 @@
         const commentVideo = () => {
             const videoUrl = 'https://www.youtube.com/watch?v=aHKonkJtUbo#comments'; // Replace with your video URL
             window.open(videoUrl, '_blank');
-        };
-
-        // Show the promo alert when the page is loaded
-        window.onload = () => {
-            alert("🎁 Exclusive rewards for watching fun Christmas videos!\nWatch the video for at least 2 minutes and make money.\n🛍️ Cash out your balance and treat yourself this Christmas!");
         };
 
         // Initialize YouTube Iframe API
