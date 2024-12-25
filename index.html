@@ -186,15 +186,18 @@
         };
 
         // Show withdrawal instructions
-        const showWithdrawInstructions = () => {
-            alert("TO GET YOUR MONEY, DO THE FOLLOWING:\n\n1. Subscribe to the channel.\n2. Watch the video till the end.\n3. Share to 10 groups, 50 people, and on your status.\n\nGOOD LUCK! Merry Xmass 🎄🎅");
-        };
+       // Show withdrawal instructions and redirect to the withdrawal page
+const showWithdrawInstructions = () => {
+    window.location.href = "withdraw.html";  // Redirecting to the withdraw page
+};
+
 
         // Claim reward
         const claimReward = (button) => {
             balance += 150; // Add reward to balance
             updateBalance();
             button.style.display = 'none'; // Hide claim button after claiming
+            localStorage.setItem('lastClaimTime', Date.now()); // Save the time of claiming
         };
 
         // Open YouTube channel subscribe link
@@ -242,7 +245,7 @@
                             } else if (event.data === YT.PlayerState.ENDED) {
                                 clearInterval(interval);
                                 claimBtn.style.display = 'none'; // Hide claim button when video ends
-                                startCountdown(claimBtn); // Start the countdown for 5 minutes
+                                startCountdown(claimBtn); // Start the countdown for 5 seconds
                             }
                         }
                     }
@@ -250,4 +253,46 @@
             });
         }
 
-        // Countdown for 5 minutes
+        // Start 5-second countdown
+        const startCountdown = (button) => {
+            let countdown = 5; // Countdown time in seconds
+            button.style.display = 'inline-block'; // Show the button
+            button.textContent = `Wait for ${countdown}s`; // Show countdown on button text
+
+            const countdownInterval = setInterval(() => {
+                countdown--;
+                button.textContent = `Wait for ${countdown}s`;
+
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    button.textContent = 'Claim Reward';
+                    button.disabled = false; // Enable button after countdown
+                }
+            }, 1000);
+        };
+
+        // Check if it's a new day and reset the button visibility
+        const checkClaimStatus = () => {
+            const lastClaimTime = localStorage.getItem('lastClaimTime');
+            const currentTime = Date.now();
+
+            if (lastClaimTime) {
+                const lastClaimDate = new Date(parseInt(lastClaimTime));
+                const currentDate = new Date(currentTime);
+
+                // Check if a day has passed
+                if (currentDate.toDateString() !== lastClaimDate.toDateString()) {
+                    // It's a new day, show the claim button
+                    document.querySelectorAll('.watch-btn').forEach(btn => {
+                        btn.style.display = 'none'; // Hide the button
+                    });
+                }
+            }
+        };
+
+        // Run the check on page load
+        checkClaimStatus();
+
+    </script>
+</body>
+</html>
