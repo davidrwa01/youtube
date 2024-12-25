@@ -41,39 +41,45 @@
             margin-top: 10px;
         }
 
-        .balance-part, .channel-section {
-            border: 2px solid #e63946;
+        .promo-header {
+            font-size: 26px;
+            font-weight: bold;
+            color: #fff;
+            margin-top: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 15px;
             border-radius: 10px;
-            padding: 10px;
-            margin-bottom: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-            color: #e63946;
+        }
+
+        .promo-text {
+            font-size: 18px;
+            margin-top: 10px;
+            color: #fff;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            border-radius: 10px;
             font-weight: bold;
         }
 
-        #withdraw-btn, #like-btn, #comment-btn {
-            background-color: #e63946;
-            color: #fff;
+        .video-task {
+            margin-top: 20px;
+        }
+
+        .youtube-btn {
+            background-color: #ff0000;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
             border: none;
             padding: 10px 20px;
-            border-radius: 10px;
+            border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
-            transition: 0.3s ease;
+            margin-top: 10px;
         }
 
-        #withdraw-btn:hover, #like-btn:hover, #comment-btn:hover {
-            background-color: #fff;
-            color: #e63946;
-            box-shadow: 0px 0px 10px rgba(230, 57, 70, 0.8);
-        }
-
-        iframe {
-            width: 100%;
-            height: 315px;
-            border: 3px solid #e63946;
-            border-radius: 10px;
-            margin-bottom: 10px;
+        .youtube-btn:hover {
+            background-color: #c4302b;
         }
 
         .watch-btn {
@@ -92,7 +98,7 @@
         .watch-btn:hover {
             background-color: #21867a;
         }
-
+        
         footer {
             margin-top: 20px;
             padding: 15px;
@@ -101,63 +107,69 @@
             border-radius: 15px;
             font-size: 16px;
         }
-
-        #balance {
+        
+        .whatsapp-btn {
+            background-color: #25D366; /* WhatsApp green color */
+            color: white;
+            font-size: 18px;
             font-weight: bold;
-            font-size: 20px;
-            color: #333;
-        }
-
-        textarea {
-            margin-top: 15px;
-            width: 100%;
-            padding: 10px;
+            padding: 10px 20px;
             border-radius: 10px;
-            border: 1px solid #e63946;
+            cursor: pointer;
+            margin-top: 15px;
+            text-decoration: none;
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
         }
     </style>
 </head>
 <body>
     <div id="app">
         <!-- Promo Section -->
-        <h2>Xmass Earn 🎄🎅</h2>
-        <p>🎁 Watch videos, earn rewards, and share the Christmas cheer!</p>
+        <div class="promo-header">
+            🎁 Exclusive rewards for watching fun Christmas videos.
+        </div>
+        <div class="promo-text">
+            Watch the video for at least 2 minutes and make money.<br>
+            🛍️ Cash out your balance and treat yourself this Christmas!
+        </div>
 
         <!-- User Info -->
-        <div class="balance-part">
-            <h3><b>EARNINGS</b></h3>
-            <p>Balance: <span id="balance">0</span> RWF</p>
-            <button id="withdraw-btn" onclick="showWithdrawInstructions()">Withdraw</button>
+        <div id="user-info">
+            <h2>Xmass Earn 🎄🎅</h2>
+            <div class="balance-part">
+                <div>
+                    <h3><b>EARNINGS</b></h3>
+                    <p>Balance: <span id="balance">0</span> RWF</p>
+                </div>
+                <button id="withdraw-btn" onclick="showWithdrawInstructions()">Withdraw</button>
+            </div>
         </div>
 
         <!-- Video Section -->
         <div id="videos">
-            <h3>Watch videos and earn money!</h3>
-            <div class="video-task" data-video-id="aHKonkJtUbo">
+            <h3>Watch the video and wait for the claim button to earn money!</h3>
+            <div class="video-task">
                 <iframe id="video-1" src="https://www.youtube.com/embed/aHKonkJtUbo?enablejsapi=1" allowfullscreen></iframe>
                 <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
+                <!-- YouTube Subscribe Button -->
+                <button class="youtube-btn" onclick="subscribeChannel()">Subscribe</button>
+                <button class="youtube-btn" onclick="likeVideo()">Like</button>
+                <button class="youtube-btn" onclick="commentVideo()">Comment</button>
             </div>
-        </div>
-
-        <!-- YouTube Channel Section -->
-        <div class="channel-section">
-            <h3>🎥 Visit Our YouTube Channel!</h3>
-            <p>Support us by liking, commenting, and subscribing. Click below:</p>
-            <a href="https://youtube.com/@davidrwa250?si=f0LyLNa7D2oxX23W" target="_blank" style="color: #e63946; font-weight: bold; text-decoration: underline; font-size: 18px;">
-                Go to Our Channel
-            </a>
-            <br><br>
-            <button id="like-btn" onclick="likeChannel()">Like Channel</button>
-            <textarea id="comment-box" placeholder="Leave a comment..."></textarea>
-            <br>
-            <button id="comment-btn" onclick="submitComment()">Submit Comment</button>
         </div>
 
         <!-- Referral Section -->
         <footer>
-            <p>🎄 Invite Friends & Spread the Cheer 🎅</p>
+            <p class="footer-heading">🎄 Invite Friends & Spread the Cheer 🎅</p>
+            <p class="footer-info">Share the festive fun and earn rewards with your friends this Christmas!</p>
+            <br>
+            <!-- WhatsApp Share Button -->
             <a href="https://wa.me/?text=Check%20out%20this%20awesome%20Xmass%20Earn%20app%20at%20https://xmassearn2025.vercel.app" class="whatsapp-btn" target="_blank">Share on WhatsApp</a>
         </footer>
+        
     </div>
 
     <script>
@@ -170,7 +182,13 @@
 
         // Show withdrawal instructions
         const showWithdrawInstructions = () => {
-            alert("TO GET YOUR MONEY:\n\n1. Subscribe to the channel.\n2. Watch the video till the end.\n3. Share to 10 groups, 50 people, and on your status.\n\nGOOD LUCK! Merry Xmass 🎄🎅");
+            alert(
+                "TO GET YOUR MONEY, DO THE FOLLOWING:\n\n" +
+                "1. Subscribe to the channel.\n" +
+                "2. Watch the video till the end.\n" +
+                "3. Share to 10 groups, 50 people, and on your status.\n\n" +
+                "GOOD LUCK! Merry Xmass 🎄🎅"
+            );
         };
 
         // Claim reward
@@ -180,20 +198,27 @@
             button.style.display = 'none'; // Hide claim button after claiming
         };
 
-        // Handle the Like button
-        const likeChannel = () => {
-            alert("Thank you for liking our channel! 🎉");
+        // Open YouTube channel subscribe link
+        const subscribeChannel = () => {
+            const channelUrl = 'https://www.youtube.com/channel/UCedKUxG94SmP258Gaj2hGkQ?sub_confirmation=1'; // Replace with your channel URL
+            window.open(channelUrl, '_blank');
         };
 
-        // Handle the Comment button
-        const submitComment = () => {
-            const comment = document.getElementById('comment-box').value.trim();
-            if (comment) {
-                alert("Thank you for your comment: " + comment);
-                document.getElementById('comment-box').value = ''; // Clear the comment box
-            } else {
-                alert("Please write a comment before submitting!");
-            }
+        // Like the YouTube video
+        const likeVideo = () => {
+            const videoUrl = 'https://www.youtube.com/watch?v=aHKonkJtUbo'; // Replace with your video URL
+            window.open(videoUrl, '_blank');
+        };
+
+        // Open the YouTube comment section
+        const commentVideo = () => {
+            const videoUrl = 'https://www.youtube.com/watch?v=aHKonkJtUbo#comments'; // Replace with your video URL
+            window.open(videoUrl, '_blank');
+        };
+
+        // Show the promo alert when the page is loaded
+        window.onload = () => {
+            alert("🎁 Exclusive rewards for watching fun Christmas videos!\nWatch the video for at least 2 minutes and make money.\n🛍️ Cash out your balance and treat yourself this Christmas!");
         };
 
         // Initialize YouTube Iframe API
@@ -213,11 +238,12 @@
                     events: {
                         'onStateChange': function (event) {
                             if (event.data === YT.PlayerState.PLAYING) {
+                                // Start tracking watch time
                                 interval = setInterval(() => {
                                     watchTime++;
-                                    if (watchTime >= 60) {
+                                    if (watchTime >= 60) { // Show claim button after 60 seconds
                                         claimBtn.style.display = 'inline-block';
-                                        clearInterval(interval);
+                                        clearInterval(interval); // Stop tracking
                                     }
                                 }, 1000);
                             } else if (event.data === YT.PlayerState.ENDED) {
