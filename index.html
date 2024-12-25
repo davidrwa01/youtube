@@ -29,10 +29,26 @@
             border: 2px solid #e63946;
         }
 
-        h3, h2 {
+        h2 {
             color: #e63946;
             font-family: 'Pacifico', cursive;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        h3 {
+            color: #e63946;
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        .intro-text {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #333;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
         }
 
         .balance-part {
@@ -120,10 +136,40 @@
         .whatsapp-btn:hover {
             background-color: #128C7E;
         }
+
+        .promo-header {
+            font-size: 26px;
+            font-weight: bold;
+            color: #fff;
+            margin-top: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .promo-text {
+            font-size: 18px;
+            margin-top: 10px;
+            color: #fff;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <div id="app">
+        <!-- Promo Section -->
+        <div class="promo-header">
+            🎁 Exclusive rewards for watching fun Christmas videos.
+        </div>
+        <div class="promo-text">
+            Watch the video for at least 2 minutes and make money.<br>
+            🛍️ Cash out your balance and treat yourself this Christmas!
+        </div>
+
         <!-- User Info -->
         <div id="user-info">
             <h2>Xmass Earn 🎄🎅</h2>
@@ -151,12 +197,14 @@
 
         <!-- Referral Section -->
         <footer>
-            <p>Invite Friends:</p>
-            <input type="text" id="invite-link" readonly value="https://example.com?ref=12345">
+            <p class="footer-heading">🎄 Invite Friends & Spread the Cheer 🎅</p>
+          
+            <p class="footer-info">Share the festive fun and earn rewards with your friends this Christmas!</p>
             <br>
             <!-- WhatsApp Share Button -->
             <a href="https://wa.me/?text=Check%20out%20this%20awesome%20Xmass%20Earn%20app%20at%20https://example.com?ref=12345" class="whatsapp-btn" target="_blank">Share on WhatsApp</a>
         </footer>
+        
     </div>
 
     <script>
@@ -185,6 +233,11 @@
             button.style.display = 'none'; // Hide claim button after claiming
         };
 
+        // Show the promo alert when the page is loaded
+        window.onload = () => {
+            alert("🎁 Exclusive rewards for watching fun Christmas videos!\nWatch the video for at least 2 minutes and make money.\n🛍️ Cash out your balance and treat yourself this Christmas!");
+        };
+
         // Initialize YouTube Iframe API
         function onYouTubeIframeAPIReady() {
             const videoTasks = document.querySelectorAll('.video-task');
@@ -210,8 +263,8 @@
                                         clearInterval(interval); // Stop tracking
                                     }
                                 }, 1000);
-                            } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
-                                clearInterval(interval); // Stop tracking if paused or ended
+                            } else if (event.data === YT.PlayerState.ENDED) {
+                                clearInterval(interval);
                             }
                         }
                     }
