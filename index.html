@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XMASS Earn 🎄🎅</title>
-    <script src="https://www.youtube.com/iframe_api"></script>    
+    <script src="https://www.youtube.com/iframe_api"></script>      
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -152,7 +152,7 @@
         <!-- Video Section -->
         <div class="video-task" data-video-id="aHKonkJtUbo">
             <iframe class="video-frame" id="video-1" src="https://www.youtube.com/embed/aHKonkJtUbo?enablejsapi=1" allowfullscreen></iframe>
-            <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
+            <button class="watch-btn" id="claim-btn-1" onclick="claimReward(this)">Claim Reward</button>
             <button class="youtube-btn" onclick="subscribeChannel()">Subscribe</button>
             <button class="youtube-btn" onclick="likeVideo()">Like</button>
             <button class="youtube-btn" onclick="commentVideo()">Comment</button>
@@ -161,7 +161,7 @@
         <!-- Another Video Section -->
         <div class="video-task" data-video-id="Biy9K9EDjDc">
             <iframe class="video-frame" id="video-2" src="https://www.youtube.com/embed/Biy9K9EDjDc?enablejsapi=1" allowfullscreen></iframe>
-            <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
+            <button class="watch-btn" id="claim-btn-2" onclick="claimReward(this)">Claim Reward</button>
             <button class="youtube-btn" onclick="subscribeChannel()">Subscribe</button>
             <button class="youtube-btn" onclick="likeVideo()">Like</button>
             <button class="youtube-btn" onclick="commentVideo()">Comment</button>
@@ -242,12 +242,12 @@
                             } else if (event.data === YT.PlayerState.ENDED) {
                                 clearInterval(interval);
                                 claimBtn.style.display = 'none'; // Hide claim button when video ends
+                                startCountdown(claimBtn); // Start the countdown for 5 minutes
                             }
                         }
                     }
                 });
             });
         }
-    </script>
-</body>
-</html>
+
+        // Countdown for 5 minutes
