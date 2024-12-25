@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XMASS Earn 🎄🎅</title>
-    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>    
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -104,6 +104,22 @@
             font-size: 20px;
             color: #333;
         }
+
+        .whatsapp-btn {
+            background-color: #25D366; /* WhatsApp green color */
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 15px;
+            text-decoration: none;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+        }
     </style>
 </head>
 <body>
@@ -127,18 +143,19 @@
                 <iframe id="video-1" src="https://www.youtube.com/embed/aHKonkJtUbo?enablejsapi=1" allowfullscreen></iframe>
                 <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
             </div>
-            <div class="video-task" data-video-id="dQw4w9WgXcQ">
-                <iframe id="video-2" src="https://www.youtube.com/embed/Biy9K9EDjDc?si=_JviW4LkDzOcSD4Kapi=1" allowfullscreen></iframe>
+            <div class="video-task" data-video-id="kKtsL8k0vZc">
+                <iframe id="video-2" src="https://www.youtube.com/embed/kKtsL8k0vZc?enablejsapi=1" allowfullscreen></iframe>
                 <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
             </div>
-            <!-- Add more videos as needed -->
         </div>
-     
 
         <!-- Referral Section -->
         <footer>
             <p>Invite Friends:</p>
             <input type="text" id="invite-link" readonly value="https://example.com?ref=12345">
+            <br>
+            <!-- WhatsApp Share Button -->
+            <a href="https://wa.me/?text=Check%20out%20this%20awesome%20Xmass%20Earn%20app%20at%20https://example.com?ref=12345" class="whatsapp-btn" target="_blank">Share on WhatsApp</a>
         </footer>
     </div>
 
@@ -188,7 +205,7 @@
                                 // Start tracking watch time
                                 interval = setInterval(() => {
                                     watchTime++;
-                                    if (watchTime >= 10) { // Show claim button after 60 seconds
+                                    if (watchTime >= 60) { // Show claim button after 60 seconds
                                         claimBtn.style.display = 'inline-block';
                                         clearInterval(interval); // Stop tracking
                                     }
