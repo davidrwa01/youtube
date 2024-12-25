@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMASS Earn 🎄🎅</title>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f7f7;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: url('https://cdn.pixabay.com/photo/2016/11/18/14/29/christmas-1837122_1280.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+
+        #app {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            color: #333;
+            text-align: center;
+            border: 2px solid #e63946;
+        }
+
+        h3, h2 {
+            color: #e63946;
+            font-family: 'Pacifico', cursive;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .balance-part {
+            border: 2px solid #e63946;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #e63946;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #withdraw-btn {
+            background-color: #e63946;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+
+        #withdraw-btn:hover {
+            background-color: #fff;
+            color: #e63946;
+            box-shadow: 0px 0px 10px rgba(230, 57, 70, 0.8);
+        }
+
+        iframe {
+            width: 100%;
+            height: 315px;
+            border: 3px solid #e63946;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .watch-btn {
+            display: none;
+            background-color: #2a9d8f;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .watch-btn:hover {
+            background-color: #21867a;
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e63946;
+            color: #fff;
+            border-radius: 15px;
+            font-size: 16px;
+        }
+
+        #balance {
+            font-weight: bold;
+            font-size: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- User Info -->
+        <div id="user-info">
+            <h2>Xmass Earn 🎄🎅</h2>
+            <div class="balance-part">
+                <div>
+                    <h3><b>EARNINGS</b></h3>
+                    <p>Balance: <span id="balance">0</span> RWF</p>
+                </div>
+                <button id="withdraw-btn" onclick="showWithdrawInstructions()">Withdraw</button>
+            </div>
+        </div>
+
+        <!-- Video Section -->
+        <div id="videos">
+            <h3>Watch the video and wait for the claim button to earn money!</h3>
+            <div class="video-task" data-video-id="aHKonkJtUbo">
+                <iframe id="video-1" src="https://www.youtube.com/embed/aHKonkJtUbo?enablejsapi=1" allowfullscreen></iframe>
+                <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
+            </div>
+            <div class="video-task" data-video-id="dQw4w9WgXcQ">
+                <iframe id="video-2" src="https://www.youtube.com/embed/Biy9K9EDjDc?si=_JviW4LkDzOcSD4Kapi=1" allowfullscreen></iframe>
+                <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
+            </div>
+            <!-- Add more videos as needed -->
+        </div>
+     
+
+        <!-- Referral Section -->
+        <footer>
+            <p>Invite Friends:</p>
+            <input type="text" id="invite-link" readonly value="https://example.com?ref=12345">
+        </footer>
+    </div>
+
+    <script>
+        let balance = 0;
+
+        // Update balance display
+        const updateBalance = () => {
+            document.getElementById('balance').textContent = balance;
+        };
+
+        // Show withdrawal instructions
+        const showWithdrawInstructions = () => {
+            alert(
+                "TO GET YOUR MONEY, DO THE FOLLOWING:\n\n" +
+                "1. Subscribe to the channel.\n" +
+                "2. Watch the video till the end.\n" +
+                "3. Share to 10 groups, 50 people, and on your status.\n\n" +
+                "GOOD LUCK! Merry Xmass 🎄🎅"
+            );
+        };
+
+        // Claim reward
+        const claimReward = (button) => {
+            balance += 150; // Add reward to balance
+            updateBalance();
+            button.style.display = 'none'; // Hide claim button after claiming
+        };
+
+        // Initialize YouTube Iframe API
+        function onYouTubeIframeAPIReady() {
+            const videoTasks = document.querySelectorAll('.video-task');
+
+            videoTasks.forEach(task => {
+                const iframe = task.querySelector('iframe');
+                const claimBtn = task.querySelector('.watch-btn');
+                const videoId = task.getAttribute('data-video-id');
+
+                let watchTime = 0;
+                let interval;
+
+                const player = new YT.Player(iframe.id, {
+                    videoId: videoId,
+                    events: {
+                        'onStateChange': function (event) {
+                            if (event.data === YT.PlayerState.PLAYING) {
+                                // Start tracking watch time
+                                interval = setInterval(() => {
+                                    watchTime++;
+                                    if (watchTime >= 10) { // Show claim button after 60 seconds
+                                        claimBtn.style.display = 'inline-block';
+                                        clearInterval(interval); // Stop tracking
+                                    }
+                                }, 1000);
+                            } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+                                clearInterval(interval); // Stop tracking if paused or ended
+                            }
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
