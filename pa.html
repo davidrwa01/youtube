@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMASS Earn 🎄🎅</title>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f7f7;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: url('https://cdn.pixabay.com/photo/2016/11/18/14/29/christmas-1837122_1280.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+
+        #app {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            color: #333;
+            text-align: center;
+            border: 2px solid #e63946;
+        }
+
+        h2 {
+            color: #e63946;
+            font-family: 'Pacifico', cursive;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        h3 {
+            color: #e63946;
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        .intro-text {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #333;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .balance-part {
+            border: 2px solid #e63946;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #e63946;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #withdraw-btn {
+            background-color: #e63946;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+
+        #withdraw-btn:hover {
+            background-color: #fff;
+            color: #e63946;
+            box-shadow: 0px 0px 10px rgba(230, 57, 70, 0.8);
+        }
+
+        iframe {
+            width: 100%;
+            height: 315px;
+            border: 3px solid #e63946;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .watch-btn {
+            display: none;
+            background-color: #e63946;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .watch-btn:hover {
+            background-color: #c62828;
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e63946;
+            color: #fff;
+            border-radius: 15px;
+            font-size: 16px;
+        }
+
+        #balance {
+            font-weight: bold;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366; /* WhatsApp green color */
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 15px;
+            text-decoration: none;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+        }
+
+        .promo-header {
+            font-size: 26px;
+            font-weight: bold;
+            color: #fff;
+            margin-top: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .promo-text {
+            font-size: 18px;
+            margin-top: 10px;
+            color: #fff;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .video-controls {
+            margin-top: 20px;
+        }
+
+        .video-controls button {
+            background-color: #f0a500;
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .video-controls button:hover {
+            background-color: #d58f00;
+        }
+
+        .video-controls .like-btn {
+            background-color: #e63946;
+        }
+
+        .video-controls .comment-btn {
+            background-color: #2a9d8f;
+        }
+
+        #subscribe-btn {
+            background-color: #e63946;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #subscribe-btn:hover {
+            background-color: #c62828;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- Promo Section -->
+        <div class="promo-header">
+            🎁 Exclusive rewards for watching fun Christmas videos.
+        </div>
+        <div class="promo-text">
+            Watch the video for at least 2 minutes and make money.<br>
+            🛍️ Cash out your balance and treat yourself this Christmas!
+        </div>
+
+        <!-- User Info -->
+        <div id="user-info">
+            <h2>Xmass Earn 🎄🎅</h2>
+            <div class="balance-part">
+                <div>
+                    <h3><b>EARNINGS</b></h3>
+                    <p>Balance: <span id="balance">0</span> RWF</p>
+                </div>
+                <button id="withdraw-btn" onclick="showWithdrawInstructions()">Withdraw</button>
+            </div>
+        </div>
+
+        <!-- Subscribe Button -->
+        
+
+        <!-- Video Section 1 -->
+        <div id="videos">
+            <h3>Watch the video and wait for the claim button to earn money!</h3>
+            <div class="video-task" data-video-id="aHKonkJtUbo">
+                <iframe id="video-1" src="https://www.youtube.com/embed/aHKonkJtUbo?enablejsapi=1" allowfullscreen></iframe>
+                <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
+                <div class="video-controls">
+                  
+<button id="subscribe-btn" onclick="subscribe()">Subscribe</button>
+                  
+                    <button class="like-btn" onclick="likeVideo('aHKonkJtUbo')">Like</button>
+                    <button class="comment-btn" onclick="commentVideo('aHKonkJtUbo')">Comment</button>
+                </div>
+            </div>
+            <div class="video-task" data-video-id="kKtsL8k0vZc">
+                <iframe id="video-2" src="https://www.youtube.com/embed/kKtsL8k0vZc?enablejsapi=1" allowfullscreen></iframe>
+                <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
+                <div class="video-controls">
+                  
+<button id="subscribe-btn" onclick="subscribe()">Subscribe</button>
+                  
+                    <button class="like-btn" onclick="likeVideo('kKtsL8k0vZc')">Like</button>
+                    <button class="comment-btn" onclick="commentVideo('kKtsL8k0vZc')">Comment</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Referral Section -->
+        <footer>
+            <p class="footer-heading">🎄 Invite Friends & Spread the Christmas Spirit! 🎅</p>
+            <a href="https://wa.me/?text=Hey, check out this awesome Xmass Earn site!" class="whatsapp-btn" target="_blank">Share on WhatsApp</a>
+        </footer>
+    </div>
+
+    <script>
+        let balance = 0;
+        let watchTimes = {}; // Store the watch time for each user/channel
+
+        const updateBalance = () => {
+            document.getElementById("balance").textContent = balance;
+        };
+
+        const showWithdrawInstructions = () => {
+            alert(
+                "TO GET YOUR MONEY, DO THE FOLLOWING:\n\n" +
+                "1. Subscribe to the channel.\n" +
+                "2. Watch the video till the end.\n" +
+                "3. Share to 10 groups, 50 people, and on your status.\n\n" +
+                "GOOD LUCK! Merry Xmass 🎄🎅"
+            );
+        };
+
+        const claimReward = (button) => {
+            balance += 150; // Add reward to balance
+            updateBalance();
+            button.style.display = 'none'; // Hide claim button after claiming
+        };
+
+        const likeVideo = (videoId) => {
+            const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
+            window.open(videoUrl, '_blank');
+        };
+
+        const commentVideo = (videoId) => {
+            const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
+            window.open(videoUrl, '_blank');
+        };
+
+        const subscribe = () => {
+            window.open("https://www.youtube.com/channel/YOUR_CHANNEL_ID", "_blank");
+        };
+
+        window.onload = () => {
+            alert("🎁 Exclusive rewards for watching fun Christmas videos!\nWatch the video for at least 2 minutes and make money.\n🛍️ Cash out your balance and treat yourself this Christmas!");
+        };
+
+        // Handle video interaction
+        let currentPlayer = null;
+
+        function onYouTubeIframeAPIReady() {
+            const videoTasks = document.querySelectorAll('.video-task');
+
+            videoTasks.forEach(task => {
+                const iframe = task.querySelector('iframe');
+                const claimBtn = task.querySelector('.watch-btn');
+                const videoId = task.getAttribute('data-video-id');
+
+                let watchTime = 0;
+                let interval;
+                const player = new YT.Player(iframe.id, {
+                    videoId: videoId,
+                    events: {
+                        'onStateChange': function (event) {
+                            if (event.data === YT.PlayerState.PLAYING) {
+                                // Pause other videos when one starts playing
+                                if (currentPlayer && currentPlayer !== player) {
+                                    currentPlayer.pauseVideo();
+                                }
+                                currentPlayer = player;
+
+                                // Start tracking watch time
+                                interval = setInterval(() => {
+                                    watchTime++;
+                                    if (watchTime >= 60) { // Show claim button after 60 seconds
+                                        claimBtn.style.display = 'inline-block';
+                                        clearInterval(interval); // Stop tracking
+                                    }
+                                }, 1000);
+                            } else if (event.data === YT.PlayerState.ENDED) {
+                                clearInterval(interval);
+                                watchTimes[videoId] = (watchTimes[videoId] || 0) + watchTime; // Save watch time for the video
+                            }
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
