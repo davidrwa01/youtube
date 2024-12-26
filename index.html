@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>x-mass earn</title>
+  <title>X-mas Earn</title>
   <style>
     body {
       margin: 0;
@@ -11,7 +11,7 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      
+      background: url('snowfall.gif') center/cover no-repeat; /* Add a snowfall effect */
       color: #fff;
       font-family: 'Arial', sans-serif;
       overflow: hidden;
@@ -19,6 +19,7 @@
 
     .loader-container {
       text-align: center;
+      position: relative;
     }
 
     img {
@@ -36,11 +37,38 @@
         transform: scale(1.2);
       }
     }
+
+    .stickers {
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      display: flex;
+      gap: 10px;
+    }
+
+    .stickers img {
+      width: 50px;
+      height: 50px;
+      animation: rotate 5s infinite linear;
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
   </style>
 </head>
 <body>
- 
   <div id="loader" class="loader-container">
+    <div class="stickers">
+      <img src="bell.png" alt="Bell">
+      <img src="snowman.png" alt="Snowman">
+      <img src="gift.png" alt="Gift">
+    </div>
     <img src="523002f5-10d3-48d5-8e27-edd484ac4a0c.gif" alt="Merry Christmas Loader">
     <audio id="christmasAudio" autoplay>
       <source src="merry-christmas.mp3" type="audio/mpeg">
@@ -49,14 +77,13 @@
   </div>
 
   <script>
-    
     document.addEventListener('DOMContentLoaded', () => {
       const audio = document.getElementById('christmasAudio');
       audio.play();
 
       setTimeout(() => {
         window.location.href = "pa.html"; 
-      }, 6000);
+      }, 4000); // Reduced delay to 4 seconds
     });
   </script>
 </body>
