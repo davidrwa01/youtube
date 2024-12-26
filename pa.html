@@ -330,7 +330,7 @@
                                 // Start tracking watch time
                                 interval = setInterval(() => {
                                     watchTime++;
-                                    if (watchTime >= 60) { // Show claim button after 60 seconds
+                                    if (watchTime >= 10) { // Show claim button after 60 seconds
                                         claimBtn.style.display = 'inline-block';
                                         clearInterval(interval); // Stop tracking
                                     }
