@@ -1,222 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XMASS Earn 🎄🎅</title>
-    <script src="https://www.youtube.com/iframe_api"></script>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f7f7f7;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            background: url('https://cdn.pixabay.com/photo/2016/11/18/14/29/christmas-1837122_1280.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #fff;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>x-mass earn</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+    }
 
-        #app {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-            color: #333;
-            text-align: center;
-            border: 2px solid #e63946;
-        }
+    .loader-container {
+      text-align: center;
+    }
 
-        h3, h2 {
-            color: #e63946;
-            font-family: 'Pacifico', cursive;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-        }
+    img {
+      height: 170px;
+      width: 195px;
+      border-radius: 1%;
+      animation: bounce 2s infinite;
+    }
 
-        .balance-part {
-            border: 2px solid #e63946;
-            border-radius: 10px;
-            padding: 10px;
-            margin-bottom: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-            color: #e63946;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        #withdraw-btn {
-            background-color: #e63946;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: 0.3s ease;
-        }
-
-        #withdraw-btn:hover {
-            background-color: #fff;
-            color: #e63946;
-            box-shadow: 0px 0px 10px rgba(230, 57, 70, 0.8);
-        }
-
-        iframe {
-            width: 100%;
-            height: 315px;
-            border: 3px solid #e63946;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-
-        .watch-btn {
-            display: none;
-            background-color: #2a9d8f;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .watch-btn:hover {
-            background-color: #21867a;
-        }
-
-        footer {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #e63946;
-            color: #fff;
-            border-radius: 15px;
-            font-size: 16px;
-        }
-
-        #balance {
-            font-weight: bold;
-            font-size: 20px;
-            color: #333;
-        }
-    </style>
+    @keyframes bounce {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+    }
+  </style>
 </head>
 <body>
-    <div id="app">
-        <!-- User Info -->
-        <div id="user-info">
-            <h2>Xmass Earn 🎄🎅</h2>
-            <div class="balance-part">
-                <div>
-                    <h3><b>EARNINGS</b></h3>
-                    <p>Balance: <span id="balance">0</span> RWF</p>
-                </div>
-                <button id="withdraw-btn" onclick="showWithdrawInstructions()">Withdraw</button>
-            </div>
-        </div>
+ 
+  <div id="loader" class="loader-container">
+    <img src="523002f5-10d3-48d5-8e27-edd484ac4a0c.gif" alt="Merry Christmas Loader">
+    <audio id="christmasAudio" autoplay>
+      <source src="merry-christmas.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
 
-        <!-- Video Section -->
-        <div id="videos">
-            <h3>Watch the video and wait for the claim button to earn money!</h3>
-            <div class="video-task" data-video-id="aHKonkJtUbo">
-                <iframe id="video-1" src="https://www.youtube.com/embed/aHKonkJtUbo?enablejsapi=1" allowfullscreen></iframe>
-                <button class="watch-btn" id="claim-btn-1" onclick="claimReward(1)">Claim Reward</button>
-            </div>
-            <div class="video-task" data-video-id="Biy9K9EDjDc">
-                <iframe id="video-2" src="https://www.youtube.com/embed/Biy9K9EDjDc?enablejsapi=1" allowfullscreen></iframe>
-                <button class="watch-btn" id="claim-btn-2" onclick="claimReward(2)">Claim Reward</button>
-            </div>
-        </div>
+  <script>
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      const audio = document.getElementById('christmasAudio');
+      audio.play();
 
-        <!-- Referral Section -->
-        <footer>
-            <p>Invite Friends:</p>
-            <input type="text" id="invite-link" readonly value="https://example.com?ref=12345">
-        </footer>
-    </div>
-
-    <script>
-        let balance = 0;
-        let claimCooldowns = [false, false]; // Store cooldown state for each video
-
-        // Update balance display
-        const updateBalance = () => {
-            document.getElementById('balance').textContent = balance;
-        };
-
-        // Show withdrawal instructions
-        const showWithdrawInstructions = () => {
-            alert(
-                "TO GET YOUR MONEY, DO THE FOLLOWING:\n\n" +
-                "1. Subscribe to the channel.\n" +
-                "2. Watch the video till the end.\n" +
-                "3. Share to 10 groups, 50 people, and on your status.\n\n" +
-                "GOOD LUCK! Merry Xmass 🎄🎅"
-            );
-        };
-
-        // Claim reward function
-        const claimReward = (videoIndex) => {
-            if (!claimCooldowns[videoIndex - 1]) {
-                balance += 150; // Add reward to balance
-                updateBalance();
-                document.getElementById(`claim-btn-${videoIndex}`).style.display = 'none'; // Hide button after claiming
-                claimCooldowns[videoIndex - 1] = true; // Set cooldown for this video
-                startCooldown(videoIndex); // Start cooldown for this video
-            }
-        };
-
-        // Start the 5-minute cooldown for the claim button
-        const startCooldown = (videoIndex) => {
-            const button = document.getElementById(`claim-btn-${videoIndex}`);
-            let timeLeft = 10; // 5 minutes in seconds
-            const interval = setInterval(() => {
-                if (timeLeft <= 0) {
-                    clearInterval(interval);
-                    claimCooldowns[videoIndex - 1] = false; // Reset cooldown
-                    button.style.display = 'inline-block'; // Show button again after 5 minutes
-                }
-            }, 1000);
-        };
-
-        // Initialize YouTube Iframe API
-        function onYouTubeIframeAPIReady() {
-            const videoTasks = document.querySelectorAll('.video-task');
-
-            videoTasks.forEach((task, index) => {
-                const iframe = task.querySelector('iframe');
-                const claimBtn = task.querySelector('.watch-btn');
-                const videoId = task.getAttribute('data-video-id');
-
-                let watchTime = 0;
-                let interval;
-
-                const player = new YT.Player(iframe.id, {
-                    videoId: videoId,
-                    events: {
-                        'onStateChange': function (event) {
-                            if (event.data === YT.PlayerState.PLAYING) {
-                                // Start tracking watch time
-                                interval = setInterval(() => {
-                                    watchTime++;
-                                    if (watchTime >= 10) { // 5 minutes of watch time
-                                        claimBtn.style.display = 'inline-block'; // Show claim button after 5 minutes
-                                        clearInterval(interval); // Stop tracking
-                                    }
-                                }, 1000);
-                            } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
-                                clearInterval(interval); // Stop tracking if paused or ended
-                            }
-                        }
-                    }
-                });
-            });
-        }
-    </script>
+      setTimeout(() => {
+        window.location.href = "pa1.html"; 
+      }, 6000);
+    });
+  </script>
 </body>
 </html>
