@@ -3,177 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XMASS Earn 🎄🎅</title>
+    <title>Earn Rewards 🎉</title>
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f7f7f7;
-            text-align: center;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: url('https://cdn.pixabay.com/photo/2016/11/18/14/29/christmas-1837122_1280.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #fff;
-        }
-
-        #app {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
+            background-color: #f4f4f4;
             color: #333;
             text-align: center;
-            border: 2px solid #e63946;
         }
 
-        h2 {
-            color: #e63946;
-            font-family: 'Pacifico', cursive;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .intro-text {
+        h1 {
+            color: #4CAF50;
+        }
+
+        .balance {
             font-size: 20px;
-            margin-bottom: 20px;
+            margin: 20px 0;
+            font-weight: bold;
             color: #333;
-            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .task {
+            margin: 20px 0;
             padding: 15px;
+            border: 1px solid #ddd;
             border-radius: 10px;
-            font-weight: bold;
+            background: #f9f9f9;
         }
 
-        .balance-part {
-            border: 2px solid #e63946;
-            border-radius: 10px;
-            padding: 10px;
-            margin-bottom: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-            color: #e63946;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        .task h3 {
+            margin: 0 0 10px;
         }
 
-        #withdraw-btn {
-            background-color: #e63946;
-            color: #fff;
-            border: none;
+        .task button {
             padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
             font-size: 16px;
-            transition: 0.3s ease;
-        }
-
-        #withdraw-btn:hover {
-            background-color: #fff;
-            color: #e63946;
-            box-shadow: 0px 0px 10px rgba(230, 57, 70, 0.8);
-        }
-
-        .action-btn {
-            background-color: #e63946;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .action-btn:hover {
-            background-color: #c62828;
-        }
-
-        footer {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #e63946;
             color: #fff;
-            border-radius: 15px;
-            font-size: 16px;
+            background: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
-        #balance {
-            font-weight: bold;
-            font-size: 20px;
-            color: #333;
+        .task button:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+        }
+
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+            border-radius: 10px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
-    <div id="app">
-        <!-- Promo Section -->
-        <h2>Xmass Earn 🎄🎅</h2>
-        <p class="intro-text">
-            🎁 Earn money by watching videos, liking, commenting, and subscribing!<br>
-            🛍️ Cash out your balance and treat yourself this Christmas!
-        </p>
+    <div class="container">
+        <h1>Earn Rewards 🎉</h1>
+        <div class="balance">Balance: <span id="balance">0</span> RWF</div>
 
-        <!-- User Info -->
-        <div class="balance-part">
-            <div>
-                <h3>EARNINGS</h3>
-                <p>Balance: <span id="balance">0</span> RWF</p>
-            </div>
-            <button id="withdraw-btn" onclick="showWithdrawInstructions()">Withdraw</button>
+        <!-- Like Task -->
+        <div class="task">
+            <h3>1. Like the Video</h3>
+            <button id="like-btn" onclick="completeTask('like', 100, 'https://youtu.be/example')">Like and Earn 100 RWF</button>
         </div>
 
-        <!-- Actions Section -->
-        <h3>Complete these actions to earn money!</h3>
-        <!-- Video Section 1 -->
-        <div id="videos">
-            <h3>Watch the video and wait for the claim button to earn money!</h3>
-            <div class="video-task" data-video-id="aHKonkJtUbo">
-                <iframe id="video-1" src="https://www.youtube.com/embed/vYHhd6Efh-0?enablejsapi=1" allowfullscreen></iframe>
-                <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
-            </div>
+        <!-- Subscribe Task -->
+        <div class="task">
+            <h3>2. Subscribe to the Channel</h3>
+            <button id="subscribe-btn" onclick="completeTask('subscribe', 200, 'https://youtube.com/@example')">Subscribe and Earn 200 RWF</button>
         </div>
 
-        <button class="action-btn" onclick="performAction('like')">Like Video (+50 RWF)</button>
-        <button class="action-btn" onclick="performAction('comment')">Comment (+50 RWF)</button>
-        <button class="action-btn" onclick="performAction('subscribe')">Subscribe (+100 RWF)</button>
+        <!-- Comment Task -->
+        <div class="task">
+            <h3>3. Comment on the Video</h3>
+            <button id="comment-btn" onclick="completeTask('comment', 150, 'https://youtu.be/example')">Comment and Earn 150 RWF</button>
+        </div>
 
-        <!-- Referral Section -->
-        <footer>
-            <p>🎄 Invite Friends & Spread the Christmas Spirit! 🎅</p>
-        </footer>
+        <!-- Watch Video Task -->
+        <div class="task">
+            <h3>4. Watch the Video</h3>
+            <iframe src="https://www.youtube.com/embed/example"></iframe>
+            <button id="watch-btn" style="display:none;" onclick="claimReward(300)">Claim 300 RWF</button>
+        </div>
     </div>
 
     <script>
         let balance = 0;
 
-        const loadBalance = () => {
-            const savedBalance = localStorage.getItem("balance");
-            if (savedBalance) {
-                balance = parseInt(savedBalance, 10);
-            }
-            updateBalance();
-        };
-
-        const saveBalance = () => {
-            localStorage.setItem("balance", balance);
-        };
-
+        // Fungura balance kuri page
         const updateBalance = () => {
-            document.getElementById("balance").textContent = balance;
+            document.getElementById('balance').textContent = balance;
         };
 
-        const performAction = (action) => {
-            let reward = 0;
-            let url = "";
+        // Complete a task
+        const completeTask = (task, reward, link) => {
+            const button = document.getElementById(`${task}-btn`);
+            if (button.disabled) {
+                alert("❌ You have already completed this task!");
+                return;
+            }
 
-            if (action === "like") {
-                reward = 50;
-                url = "https://youtu.be/vYHhd6Efh-0?si=EtCUKgHDqJ9xWHcK";
-            } else if (action === "comment") {
-                reward = 50;
-                url = "https://youtu.be/vYHhd6Efh-0?si=EtCUKgHDqJ9xWHcK";
-            } else if (action === "subscribe") {
-                reward = 100;
-                url = "https://youtube.com/@davidrwa250?si=5vvgeockC5}
+            balance += reward; // Yongeraho amafaranga
+            updateBalance();
+            button.disabled = true; // Fungura button
+            button.textContent = "Completed";
+            window.open(link, '_blank'); // Fungura link kuri YouTube
+        };
+
+        // Watch Video Task
+        const enableWatchButton = () => {
+            setTimeout(() => {
+                document.getElementById('watch-btn').style.display = 'inline-block';
+            }, 120000); // 2 minutes
+        };
+
+        const claimReward = (reward) => {
+            const button = document.getElementById('watch-btn');
+            if (button.disabled) {
+                alert("❌ You have already claimed this reward!");
+                return;
+            }
+
+            balance += reward;
+            updateBalance();
+            button.disabled = true;
+            button.textContent = "Claimed";
+        };
+
+        // Fungura watch button nyuma y'iminota 2
+        window.onload = () => {
+            enableWatchButton();
+        };
+    </script>
+</body>
+</html>
