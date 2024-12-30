@@ -3,51 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Year Earn 2025 🎉🥳</title>
+    <title>XMASS Earn 🎄🎅</title>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #ffffff;
+            background-color: #f7f7f7;
             text-align: center;
             margin: 0;
             padding: 0;
-            color: #000000;
+            background: url('https://cdn.pixabay.com/photo/2016/11/18/14/29/christmas-1837122_1280.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
         }
 
         #app {
             max-width: 800px;
             margin: auto;
             padding: 20px;
-            background: #f0f8ff;
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
             border-radius: 15px;
-            color: #000000;
+            color: #333;
             text-align: center;
-            border: 2px solid #0000ff;
+            border: 2px solid #e63946;
         }
 
         h2 {
-            color: #0000ff;
+            color: #e63946;
             font-family: 'Pacifico', cursive;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
         }
 
         .intro-text {
             font-size: 20px;
             margin-bottom: 20px;
-            color: #000000;
-            background-color: #ffffff;
+            color: #333;
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 15px;
             border-radius: 10px;
             font-weight: bold;
         }
 
         .balance-part {
-            border: 2px solid #0000ff;
+            border: 2px solid #e63946;
             border-radius: 10px;
             padding: 10px;
             margin-bottom: 20px;
-            background-color: #ffffff;
-            color: #0000ff;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #e63946;
             font-weight: bold;
             display: flex;
             align-items: center;
@@ -55,8 +58,8 @@
         }
 
         #withdraw-btn {
-            background-color: #0000ff;
-            color: #ffffff;
+            background-color: #e63946;
+            color: #fff;
             border: none;
             padding: 10px 20px;
             border-radius: 10px;
@@ -66,14 +69,14 @@
         }
 
         #withdraw-btn:hover {
-            background-color: #ffffff;
-            color: #0000ff;
-            box-shadow: 0px 0px 10px rgba(0, 0, 255, 0.8);
+            background-color: #fff;
+            color: #e63946;
+            box-shadow: 0px 0px 10px rgba(230, 57, 70, 0.8);
         }
 
         .action-btn {
-            background-color: #ff0000;
-            color: #ffffff;
+            background-color: #e63946;
+            color: white;
             font-size: 18px;
             font-weight: bold;
             border: none;
@@ -90,8 +93,8 @@
         footer {
             margin-top: 20px;
             padding: 15px;
-            background-color: #0000ff;
-            color: #ffffff;
+            background-color: #e63946;
+            color: #fff;
             border-radius: 15px;
             font-size: 16px;
         }
@@ -99,17 +102,17 @@
         #balance {
             font-weight: bold;
             font-size: 20px;
-            color: #000000;
+            color: #333;
         }
     </style>
 </head>
 <body>
     <div id="app">
         <!-- Promo Section -->
-        <h2>New Year Earn 2025 🎉🥳</h2>
+        <h2>Xmass Earn 🎄🎅</h2>
         <p class="intro-text">
             🎁 Earn money by watching videos, liking, commenting, and subscribing!<br>
-            🛍️ Cash out your balance and treat yourself this New Year!
+            🛍️ Cash out your balance and treat yourself this Christmas!
         </p>
 
         <!-- User Info -->
@@ -123,6 +126,7 @@
 
         <!-- Actions Section -->
         <h3>Complete these actions to earn money!</h3>
+        <!-- Video Section 1 -->
         <div id="videos">
             <h3>Watch the video and wait for the claim button to earn money!</h3>
             <div class="video-task" data-video-id="aHKonkJtUbo">
@@ -137,7 +141,7 @@
 
         <!-- Referral Section -->
         <footer>
-            <p>🎉 Invite Friends & Spread the New Year Cheer! 🥳</p>
+            <p>🎄 Invite Friends & Spread the Christmas Spirit! 🎅</p>
         </footer>
     </div>
 
@@ -145,7 +149,10 @@
         let balance = 0;
 
         const loadBalance = () => {
-            balance = 0; // Reset balance to zero for all users
+            const savedBalance = localStorage.getItem("balance");
+            if (savedBalance) {
+                balance = parseInt(savedBalance, 10);
+            }
             updateBalance();
         };
 
@@ -163,26 +170,10 @@
 
             if (action === "like") {
                 reward = 50;
-                url = "https://youtu.be/vYHhd6Efh-0";
+                url = "https://youtu.be/vYHhd6Efh-0?si=EtCUKgHDqJ9xWHcK";
             } else if (action === "comment") {
                 reward = 50;
-                url = "https://youtu.be/vYHhd6Efh-0";
+                url = "https://youtu.be/vYHhd6Efh-0?si=EtCUKgHDqJ9xWHcK";
             } else if (action === "subscribe") {
                 reward = 100;
-                url = "https://youtube.com/@davidrwa250";
-            }
-
-            window.open(url, "_blank");
-            balance += reward;
-            updateBalance();
-            saveBalance();
-            alert(`🎉 Action completed! ${reward} RWF added to your balance.`);
-        };
-
-        const showWithdrawInstructions = () => {
-            alert(
-                "1. Reba video yose uyirangize.\n" +
-                "2. Kanda kuri Like.\n" +
-                "3. Kanda kuri Comment.\n" +
-                "4. Kanda kuri Subscribe.\n" +
-                "5. Sharinga kuri WhatsApp no9
+                url = "https://youtube.com/@davidrwa250?si=5vvgeockC5
