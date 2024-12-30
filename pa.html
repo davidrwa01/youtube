@@ -7,9 +7,153 @@
     <title>XMASS Earn 🎄🎅</title>
     <script src="https://www.youtube.com/iframe_api"></script>
     <style>
-        /* CSS iracyari nka mbere */
-        /* ... */
-    </style>
+        
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        background: linear-gradient(to bottom, #000428, #004e92);
+        color: #fff;
+    }
+
+    #app {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+        border-radius: 15px;
+        color: #333;
+        animation: fadeIn 2s ease-in-out;
+    }
+
+    h2, h3 {
+        color: #004e92;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .intro-text {
+        font-size: 18px;
+        margin-bottom: 20px;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 15px;
+        border-radius: 10px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .balance-part {
+        border: 2px solid #004e92;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 20px;
+        background-color: rgba(255, 255, 255, 0.9);
+        color: #004e92;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    #withdraw-btn {
+        background-color: #004e92;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    #withdraw-btn:hover {
+        background-color: #fff;
+        color: #004e92;
+        transform: scale(1.1);
+    }
+
+    .action-btn {
+        background-color: #004e92;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        margin: 10px;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .action-btn:hover {
+        background-color: #e63946;
+        transform: scale(1.1);
+    }
+
+    #videos {
+        margin: 20px 0;
+        background: rgba(0, 72, 146, 0.1);
+        padding: 15px;
+        border-radius: 10px;
+        border: 2px dashed #004e92;
+    }
+
+    .video-task {
+        margin: 15px 0;
+    }
+
+    iframe {
+        width: 100%;
+        height: 300px;
+        border: 3px solid #004e92;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+    }
+
+    iframe:hover {
+        transform: scale(1.05);
+    }
+
+    .watch-btn {
+        background-color: #004e92;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .watch-btn:hover {
+        background-color: #e63946;
+        transform: scale(1.1);
+    }
+
+    footer {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #004e92;
+        color: #fff;
+        border-radius: 15px;
+        font-size: 16px;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+  
 </head>
 <body>
     <div id="app">
