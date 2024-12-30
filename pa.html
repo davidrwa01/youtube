@@ -279,11 +279,12 @@
             );
         };
 
-        const claimReward = (button) => {
-            balance += 150; // Add reward to balance
-            updateBalance();
-            button.style.display = 'none'; // Hide claim button after claiming
-        };
+     const claimReward = (button) => {
+    balance += 150; // Add reward to balance
+    updateBalance();
+    button.disabled = true; // Disable the button after claiming
+    button.textContent = "Claimed"; // Update the button text
+};
 
         const likeVideo = (videoId) => {
             const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
