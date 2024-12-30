@@ -6,13 +6,115 @@
     <title>XMASS Earn 🎄🎅</title>
     <script src="https://www.youtube.com/iframe_api"></script>
     <style>
-        /* CSS iracyari nka mbere */
-        /* ... */
+        /* Basic Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: linear-gradient(to bottom, #000428, #004e92);
+            color: #fff;
+        }
+
+        #app {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            color: #333;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        h2, h3 {
+            color: #004e92;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .balance-part {
+            border: 2px solid #004e92;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #004e92;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #withdraw-btn {
+            background-color: #004e92;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        #withdraw-btn:hover {
+            background-color: #fff;
+            color: #004e92;
+            transform: scale(1.1);
+        }
+
+        .action-btn {
+            background-color: #004e92;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background-color: #e63946;
+            transform: scale(1.1);
+        }
+
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: 3px solid #004e92;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        iframe:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #004e92;
+            color: #fff;
+            border-radius: 15px;
+            font-size: 16px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
     <div id="app">
-        <!-- Promo Section -->
         <div class="promo-header">
             🎁 Exclusive rewards for watching fun Christmas videos.
         </div>
@@ -21,7 +123,6 @@
             🛍️ Cash out your balance and treat yourself this Christmas!
         </div>
 
-        <!-- User Info -->
         <div id="user-info">
             <h2>Xmass Earn 🎄🎅</h2>
             <div class="balance-part">
@@ -33,20 +134,22 @@
             </div>
         </div>
 
-        <!-- Video Section -->
         <div id="videos">
             <h3>Watch the video and wait for the claim button to earn money!</h3>
             <div class="video-task" data-video-id="aHKonkJtUbo">
-                <iframe id="video-1" src="https://www.youtube.com/embed/ghNewoFtd9Q?enablejsapi=1" allowfullscreen></iframe>
-                <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
-            </div>
-            <div class="video-task" data-video-id="kKtsL8k0vZc">
-                <iframe id="video-2" src="https://www.youtube.com/embed/kKtsL8k0vZc?enablejsapi=1" allowfullscreen></iframe>
+                <iframe id="video-1" src="https://www.youtube.com/embed/0yyjOTzJvQ8?enablejsapi=1" allowfullscreen></iframe>
                 <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
             </div>
         </div>
 
-        <!-- Referral Section -->
+        <!-- Like, Comment, Subscribe Section -->
+        <div id="actions">
+            <h3>Complete tasks to earn more!</h3>
+            <button class="action-btn" onclick="handleAction('like')">LIKE</button>
+            <button class="action-btn" onclick="handleAction('comment')">COMMENT</button>
+            <button class="action-btn" onclick="handleAction('subscribe')">SUBSCRIBE</button>
+        </div>
+
         <footer>
             <p class="footer-heading">🎄 Invite Friends & Spread the Christmas Spirit! 🎅</p>
             <a href="https://wa.me/?text=Hey, check out this awesome Xmass Earn site!" class="whatsapp-btn" target="_blank">Share on WhatsApp</a>
@@ -75,30 +178,29 @@
             document.getElementById("balance").textContent = balance;
         };
 
-        // Igihe umuntu akoze "Claim"
-        const claimReward = (button) => {
-            balance += 150; // Ongera amafaranga kuri balance
+        // Handle Like, Comment, Subscribe actions
+        const handleAction = (action) => {
+            if (localStorage.getItem(`${action}Clicked`)) {
+                alert(`You already clicked on ${action} once. Please wait.`);
+                return;
+            }
+
+            // Add money to balance
+            balance += 100; // Add 100 RWF for each action
             updateBalance();
-            saveBalance(); // Bika amafaranga
-            button.disabled = true; // Fungura button ya "Claim"
-            button.textContent = "Claimed"; // Hindura text ya button
-        };
+            saveBalance();
 
-        // Fungura balance igihe page ifunguwe
-        window.onload = () => {
-            loadBalance();
-            alert("🎁 Exclusive rewards for watching fun Christmas videos!\nWatch the video for at least 2 minutes and make money.\n🛍️ Cash out your balance and treat yourself this Christmas!");
-        };
+            // Mark action as clicked
+            localStorage.setItem(`${action}Clicked`, true);
 
-        // Kwerekana amabwiriza yo kubikuza
-        const showWithdrawInstructions = () => {
-            alert(
-                "TO GET YOUR MONEY, DO THE FOLLOWING:\n\n" +
-                "1. Subscribe to the channel.\n" +
-                "2. Watch the video till the end.\n" +
-                "3. Share to 10 groups, 50 people, and on your status.\n\n" +
-                "GOOD LUCK! Merry Xmass 🎄🎅"
-            );
+            // Redirect to YouTube link
+            if (action === 'like') {
+                window.location.href = 'https://youtu.be/0yyjOTzJvQ8?si=IX0A3_C6Up3XQ-eH';
+            } else if (action === 'comment') {
+                window.location.href = 'https://youtu.be/0yyjOTzJvQ8?si=IX0A3_C6Up3XQ-eH';
+            } else if (action === 'subscribe') {
+                window.location.href = 'https://youtube.com/@davidrwa250?si=5vvgeockC_UyERpM';
+            }
         };
 
         // Igihe video irangiye cyangwa itangiye gukinwa
@@ -140,6 +242,11 @@
                 });
             });
         }
+
+        window.onload = () => {
+            loadBalance();
+            alert("🎁 Exclusive rewards for watching fun Christmas videos!\nWatch the video for at least 2 minutes and make money.\n🛍️ Cash out your balance and treat yourself this Christmas!");
+        };
     </script>
 </body>
 </html>
