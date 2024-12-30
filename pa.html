@@ -214,14 +214,17 @@
             }
         };
 
-        const claimReward = (button) => {
-            balance += 10;
-            updateBalance();
-            saveBalance();
-            button.disabled = true;
-            button.textContent = "Claimed";
-            alert("🎁 Congratulations! You have claimed your reward!");
-        };
+    <script>
+    const claimReward = (button) => {
+        balance += 150;
+        updateBalance();
+        saveBalance();
+        button.disabled = true;
+        button.textContent = "Claimed 🎉";
+        button.style.backgroundColor = "#ccc";
+        button.style.cursor = "not-allowed";
+        alert("🎁 Congratulations! You have claimed your reward!");
+    };
 
         const showWithdrawInstructions = () => {
             alert("⚠️ Withdrawal Instructions:\n1. Minimum withdrawal balance: 500 RWF.\n2. Send your payment request via WhatsApp at +250 78 000 0000.\n3. Provide your account details for payment.\n\n🎄 Enjoy your Christmas rewards!");
