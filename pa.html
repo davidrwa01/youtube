@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,8 +89,7 @@
             margin-bottom: 10px;
         }
 
-        .watch-btn {
-            display: none;
+        .action-btn {
             background-color: #e63946;
             color: white;
             font-size: 18px;
@@ -103,7 +101,7 @@
             margin-top: 10px;
         }
 
-        .watch-btn:hover {
+        .action-btn:hover {
             background-color: #c62828;
         }
 
@@ -123,7 +121,7 @@
         }
 
         .whatsapp-btn {
-            background-color: #25D366; /* WhatsApp green color */
+            background-color: #25D366;
             color: white;
             font-size: 18px;
             font-weight: bold;
@@ -137,110 +135,38 @@
         .whatsapp-btn:hover {
             background-color: #128C7E;
         }
-
-        .promo-header {
-            font-size: 26px;
-            font-weight: bold;
-            color: #fff;
-            margin-top: 20px;
-            background-color: rgba(0, 0, 0, 0.6);
-            padding: 15px;
-            border-radius: 10px;
-        }
-
-        .promo-text {
-            font-size: 18px;
-            margin-top: 10px;
-            color: #fff;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
-            background-color: rgba(0, 0, 0, 0.4);
-            padding: 20px;
-            border-radius: 10px;
-            font-weight: bold;
-        }
-
-        .video-controls {
-            margin-top: 20px;
-        }
-
-        .video-controls button {
-            background-color: #f0a500;
-            color: white;
-            font-size: 16px;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin: 10px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .video-controls button:hover {
-            background-color: #d58f00;
-        }
-
-        .video-controls .like-btn {
-            background-color: #e63946;
-        }
-
-        .video-controls .comment-btn {
-            background-color: #2a9d8f;
-        }
-
-        #subscribe-btn {
-            background-color: #e63946;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        #subscribe-btn:hover {
-            background-color: #c62828;
-        }
     </style>
 </head>
 <body>
     <div id="app">
         <!-- Promo Section -->
-        <div class="promo-header">
-            🎁 Exclusive rewards for watching fun Christmas videos.
-        </div>
-        <div class="promo-text">
-            Watch the video for at least 2 minutes and make money.<br>
+        <h2>Xmass Earn 🎄🎅</h2>
+        <p class="intro-text">
+            🎁 Earn money by watching videos, liking, commenting, and subscribing!<br>
             🛍️ Cash out your balance and treat yourself this Christmas!
-        </div>
+        </p>
 
         <!-- User Info -->
-        <div id="user-info">
-            <h2>Xmass Earn 🎄🎅</h2>
-            <div class="balance-part">
-                <div>
-                    <h3><b>EARNINGS</b></h3>
-                    <p>Balance: <span id="balance">0</span> RWF</p>
-                </div>
-                <button id="withdraw-btn" onclick="showWithdrawInstructions()">Withdraw</button>
+        <div class="balance-part">
+            <div>
+                <h3>EARNINGS</h3>
+                <p>Balance: <span id="balance">0</span> RWF</p>
             </div>
+            <button id="withdraw-btn" onclick="showWithdrawInstructions()">Withdraw</button>
         </div>
 
         <!-- Video Section -->
         <div id="videos">
-            <h3>Watch the video and wait for the claim button to earn money!</h3>
-            <div class="video-task" data-video-id="aHKonkJtUbo">
-                <iframe id="video-1" src="https://www.youtube.com/embed/vYHhd6Efh-0?enablejsapi=1" allowfullscreen></iframe>
-                <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
-            </div>
-            <div class="video-task" data-video-id="kKtsL8k0vZc">
-                <iframe id="video-2" src="https://www.youtube.com/embed/kKtsL8k0vZc?enablejsapi=1" allowfullscreen></iframe>
-                <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
-            </div>
+            <h3>Watch the video and complete actions to earn money!</h3>
+            <iframe id="video-1" src="https://www.youtube.com/embed/vYHhd6Efh-0?enablejsapi=1" allowfullscreen></iframe>
+            <button class="action-btn" onclick="rewardForAction('like')">Like Video (+50 RWF)</button>
+            <button class="action-btn" onclick="rewardForAction('comment')">Comment (+50 RWF)</button>
+            <button class="action-btn" onclick="rewardForAction('subscribe')">Subscribe (+100 RWF)</button>
         </div>
 
         <!-- Referral Section -->
         <footer>
-            <p class="footer-heading">🎄 Invite Friends & Spread the Christmas Spirit! 🎅</p>
+            <p>🎄 Invite Friends & Spread the Christmas Spirit! 🎅</p>
             <a href="https://wa.me/?text=Hey, check out this awesome Xmass Earn site!" class="whatsapp-btn" target="_blank">Share on WhatsApp</a>
         </footer>
     </div>
@@ -248,41 +174,34 @@
     <script>
         let balance = 0;
 
-        // Fungura balance muri Local Storage igihe page ifunguwe
         const loadBalance = () => {
             const savedBalance = localStorage.getItem("balance");
             if (savedBalance) {
-                balance = parseInt(savedBalance, 10); // Hindura amafaranga aba integer
+                balance = parseInt(savedBalance, 10);
             }
             updateBalance();
         };
 
-        // Bika balance muri Local Storage igihe yahindutse
         const saveBalance = () => {
             localStorage.setItem("balance", balance);
         };
 
-        // Fungura balance ku rubuga
         const updateBalance = () => {
             document.getElementById("balance").textContent = balance;
         };
 
-        // Igihe umuntu akoze "Claim"
-        const claimReward = (button) => {
-            balance += 150; // Ongera amafaranga kuri balance
+        const rewardForAction = (action) => {
+            let reward = 0;
+            if (action === "like") reward = 50;
+            if (action === "comment") reward = 50;
+            if (action === "subscribe") reward = 100;
+
+            balance += reward;
             updateBalance();
-            saveBalance(); // Bika amafaranga
-            button.disabled = true; // Fungura button ya "Claim"
-            button.textContent = "Claimed"; // Hindura text ya button
+            saveBalance();
+            alert(`🎉 Thank you for completing the action! ${reward} RWF added to your balance.`);
         };
 
-        // Fungura balance igihe page ifunguwe
-        window.onload = () => {
-            loadBalance();
-            alert("🎁 Exclusive rewards for watching fun Christmas videos!\nWatch the video for at least 2 minutes and make money.\n🛍️ Cash out your balance and treat yourself this Christmas!");
-        };
-
-        // Kwerekana amabwiriza yo kubikuza
         const showWithdrawInstructions = () => {
             alert(
                 "TO GET YOUR MONEY, DO THE FOLLOWING:\n\n" +
@@ -293,45 +212,7 @@
             );
         };
 
-        // Igihe video irangiye cyangwa itangiye gukinwa
-        let currentPlayer = null;
-
-        function onYouTubeIframeAPIReady() {
-            const videoTasks = document.querySelectorAll('.video-task');
-
-            videoTasks.forEach(task => {
-                const iframe = task.querySelector('iframe');
-                const claimBtn = task.querySelector('.watch-btn');
-                const videoId = task.getAttribute('data-video-id');
-
-                let watchTime = 0;
-                let interval;
-                const player = new YT.Player(iframe.id, {
-                    videoId: videoId,
-                    events: {
-                        'onStateChange': function (event) {
-                            if (event.data === YT.PlayerState.PLAYING) {
-                                if (currentPlayer && currentPlayer !== player) {
-                                    currentPlayer.pauseVideo();
-                                }
-                                currentPlayer = player;
-
-                                // Gukurikirana igihe cyo kureba video
-                                interval = setInterval(() => {
-                                    watchTime++;
-                                    if (watchTime >= 120) { // Claim button nyuma y'iminota 2
-                                        claimBtn.style.display = 'inline-block';
-                                        clearInterval(interval);
-                                    }
-                                }, 1000);
-                            } else if (event.data === YT.PlayerState.ENDED) {
-                                clearInterval(interval);
-                            }
-                        }
-                    }
-                });
-            });
-        }
+        window.onload = loadBalance;
     </script>
 </body>
 </html>
