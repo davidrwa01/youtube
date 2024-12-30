@@ -177,6 +177,7 @@
 
     <script>
         let balance = 0;
+        let claimButtonShown = false;
 
         const loadBalance = () => {
             const savedBalance = localStorage.getItem("balance");
@@ -215,23 +216,33 @@
         };
 
         const claimReward = (button) => {
-            balance += 10;
-            updateBalance();
-            saveBalance();
-            button.disabled = true;
-            button.textContent = "Claimed 🎉";
-            button.style.backgroundColor = "#ccc";
-            button.style.cursor = "not-allowed";
-            alert("🎁 Congratulations! You have claimed your reward!");
+            if (claimButtonShown) {
+                balance += 10;
+                updateBalance();
+                saveBalance();
+                button.disabled = true;
+                button.textContent = "Claimed 🎉";
+                button.style.backgroundColor = "#ccc";
+                button.style.cursor = "not-allowed";
+                alert("🎁 Congratulations! You have claimed your reward!");
+                claimButtonShown = false;  // Prevent further clicks
+            }
         };
 
         const showWithdrawInstructions = () => {
             alert("⚠️ Withdrawal Instructions:\n1. Minimum withdrawal balance: 15000 RWF.\n2. Send your payment request via WhatsApp at +250 78 000 0000.\n3. Provide your account details for payment.\n\n🎄 Enjoy your Christmas rewards!");
         };
 
+        const showClaimButton = () => {
+            const claimButton = document.querySelector(".claim-btn");
+            claimButton.style.display = "inline-block";  // Show the claim button after 2 minutes
+            claimButtonShown = true;  // Allow the claim button to be clicked
+        };
+
         window.onload = () => {
             loadBalance();
             alert("🎁 Exclusive rewards for watching fun Christmas videos!\nWatch the video for at least 2 minutes and make money.\n🛍️ Cash out your balance and treat yourself this Christmas!");
+            setTimeout(showClaimButton, 120000);  // Show the claim button after 2 minutes (120,000 ms)
         };
     </script>
 </body>
