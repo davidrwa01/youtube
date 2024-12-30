@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XMASS Earn 🎄🎅</title>
+    <title>New Year Earn 2025 🎉✨</title>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f7f7f7;
-            text-align: center;
             margin: 0;
             padding: 0;
-            background: url('https://cdn.pixabay.com/photo/2016/11/18/14/29/christmas-1837122_1280.jpg') no-repeat center center fixed;
-            background-size: cover;
+            text-align: center;
+            background: linear-gradient(to bottom, #000428, #004e92);
             color: #fff;
         }
 
@@ -21,36 +19,37 @@
             margin: auto;
             padding: 20px;
             background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
             border-radius: 15px;
             color: #333;
             text-align: center;
-            border: 2px solid #e63946;
+            animation: fadeIn 2s ease-in-out;
         }
 
         h2 {
-            color: #e63946;
+            color: #004e92;
             font-family: 'Pacifico', cursive;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            animation: bounce 2s infinite;
         }
 
         .intro-text {
-            font-size: 20px;
+            font-size: 18px;
             margin-bottom: 20px;
-            color: #333;
             background-color: rgba(255, 255, 255, 0.8);
             padding: 15px;
             border-radius: 10px;
             font-weight: bold;
+            color: #333;
         }
 
         .balance-part {
-            border: 2px solid #e63946;
+            border: 2px solid #004e92;
             border-radius: 10px;
             padding: 10px;
             margin-bottom: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-            color: #e63946;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #004e92;
             font-weight: bold;
             display: flex;
             align-items: center;
@@ -58,24 +57,24 @@
         }
 
         #withdraw-btn {
-            background-color: #e63946;
+            background-color: #004e92;
             color: #fff;
             border: none;
             padding: 10px 20px;
             border-radius: 10px;
             cursor: pointer;
             font-size: 16px;
-            transition: 0.3s ease;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
         #withdraw-btn:hover {
             background-color: #fff;
-            color: #e63946;
-            box-shadow: 0px 0px 10px rgba(230, 57, 70, 0.8);
+            color: #004e92;
+            transform: scale(1.1);
         }
 
         .action-btn {
-            background-color: #e63946;
+            background-color: #004e92;
             color: white;
             font-size: 18px;
             font-weight: bold;
@@ -84,16 +83,18 @@
             border-radius: 10px;
             cursor: pointer;
             margin-top: 10px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
         .action-btn:hover {
-            background-color: #c62828;
+            background-color: #e63946;
+            transform: scale(1.1);
         }
 
         footer {
             margin-top: 20px;
             padding: 15px;
-            background-color: #e63946;
+            background-color: #004e92;
             color: #fff;
             border-radius: 15px;
             font-size: 16px;
@@ -104,18 +105,36 @@
             font-size: 20px;
             color: #333;
         }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
     </style>
 </head>
 <body>
     <div id="app">
-        <!-- Promo Section -->
-        <h2>Xmass Earn 🎄🎅</h2>
+        <h2>New Year Earn 2025 🎉✨</h2>
         <p class="intro-text">
             🎁 Earn money by watching videos, liking, commenting, and subscribing!<br>
-            🛍️ Cash out your balance and treat yourself this Christmas!
+            🛍️ Start fresh and achieve your goals this year!
         </p>
 
-        <!-- User Info -->
         <div class="balance-part">
             <div>
                 <h3>EARNINGS</h3>
@@ -124,24 +143,13 @@
             <button id="withdraw-btn" onclick="showWithdrawInstructions()">Withdraw</button>
         </div>
 
-        <!-- Actions Section -->
         <h3>Complete these actions to earn money!</h3>
-        <!-- Video Section 1 -->
-        <div id="videos">
-            <h3>Watch the video and wait for the claim button to earn money!</h3>
-            <div class="video-task" data-video-id="aHKonkJtUbo">
-                <iframe id="video-1" src="https://www.youtube.com/embed/vYHhd6Efh-0?enablejsapi=1" allowfullscreen></iframe>
-                <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
-            </div>
-        </div>
-
         <button class="action-btn" onclick="performAction('like')">Like Video (+50 RWF)</button>
         <button class="action-btn" onclick="performAction('comment')">Comment (+50 RWF)</button>
         <button class="action-btn" onclick="performAction('subscribe')">Subscribe (+100 RWF)</button>
 
-        <!-- Referral Section -->
         <footer>
-            <p>🎄 Invite Friends & Spread the Christmas Spirit! 🎅</p>
+            <p>🎆 Spread the New Year Spirit with Friends! 🎇</p>
         </footer>
     </div>
 
@@ -149,15 +157,8 @@
         let balance = 0;
 
         const loadBalance = () => {
-            const savedBalance = localStorage.getItem("balance");
-            if (savedBalance) {
-                balance = parseInt(savedBalance, 10);
-            }
+            balance = 0; // Reset to zero for the new year
             updateBalance();
-        };
-
-        const saveBalance = () => {
-            localStorage.setItem("balance", balance);
         };
 
         const updateBalance = () => {
@@ -166,14 +167,28 @@
 
         const performAction = (action) => {
             let reward = 0;
-            let url = "";
 
-            if (action === "like") {
-                reward = 50;
-                url = "https://youtu.be/vYHhd6Efh-0?si=EtCUKgHDqJ9xWHcK";
-            } else if (action === "comment") {
-                reward = 50;
-                url = "https://youtu.be/vYHhd6Efh-0?si=EtCUKgHDqJ9xWHcK";
-            } else if (action === "subscribe") {
-                reward = 100;
-                url = "https://youtube.com/@davidrwa250?si=5vvgeockC5
+            if (action === "like") reward = 50;
+            else if (action === "comment") reward = 50;
+            else if (action === "subscribe") reward = 100;
+
+            balance += reward;
+            updateBalance();
+            alert(`🎉 Action completed! ${reward} RWF added to your balance.`);
+        };
+
+        const showWithdrawInstructions = () => {
+            alert(
+                "1. REBA VIDEO YOSE UYIRANGIZE\n" +
+                "2. KANDA KURI LIKE\n" +
+                "3. KANDA KURI COMMENT\n" +
+                "4. KANDA KURI SUBSCRIBE\n" +
+                "5. SHARINGA KURI WHATSAPP NO KURI FACEBOOK UBWIRE INSHUTI ZAWE 50 NA GROUP 10\n" +
+                "📍 Amafaranga muzayabona kuva ku 05/01/2025!"
+            );
+        };
+
+        window.onload = loadBalance;
+    </script>
+</body>
+</html>
