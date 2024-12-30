@@ -43,39 +43,38 @@
             justify-content: space-between;
         }
 
-        #withdraw-btn {
-            background-color: #004e92;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
+        .video-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
 
-        #withdraw-btn:hover {
-            background-color: #fff;
-            color: #004e92;
-            transform: scale(1.1);
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+            border-radius: 10px;
+            margin-bottom: 10px;
         }
 
-        .action-btn {
+        .claim-btn {
             background-color: #004e92;
             color: white;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
             border: none;
             padding: 10px 20px;
             border-radius: 10px;
             cursor: pointer;
-            margin: 10px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            display: none;
+            margin-top: 10px;
         }
 
-        .action-btn:hover {
-            background-color: #e63946;
-            transform: scale(1.1);
+        .claim-btn:disabled {
+            background-color: gray;
+            cursor: not-allowed;
         }
 
         footer {
@@ -107,30 +106,28 @@
                 <h3><b>EARNINGS</b></h3>
                 <p>Balance: <span id="balance">0</span> RWF</p>
             </div>
-            <button id="withdraw-btn" onclick="showWithdrawInstructions()">Withdraw</button>
         </div>
 
-        <h3>Complete these tasks to earn money:</h3>
+        <h3>Watch videos to earn money:</h3>
 
-        <button class="action-btn" onclick="completeTask('https://youtube.com/@davidrwa250?si=5vvgeockC_UyERpM', 200)">
-            Subscribe & Earn 200 RWF
-        </button>
-        <button class="action-btn" onclick="completeTask('https://youtu.be/vYHhd6Efh-0?si=EtCUKgHDqJ9xWHcK', 100)">
-            Like & Earn 100 RWF
-        </button>
-        <button class="action-btn" onclick="completeTask('https://youtu.be/vYHhd6Efh-0?si=EtCUKgHDqJ9xWHcK', 150)">
-            Comment & Earn 150 RWF
-        </button>
+        <!-- Video Section -->
+        <div class="video-section" id="video-1">
+            <iframe src="https://www.youtube.com/embed/vYHhd6Efh-0?enablejsapi=1" allowfullscreen></iframe>
+            <button class="claim-btn" id="claim-1" onclick="claimReward(1, 300)">Claim 300 RWF</button>
+        </div>
+
+        <div class="video-section" id="video-2">
+            <iframe src="https://www.youtube.com/embed/kKtsL8k0vZc?enablejsapi=1" allowfullscreen></iframe>
+            <button class="claim-btn" id="claim-2" onclick="claimReward(2, 300)">Claim 300 RWF</button>
+        </div>
 
         <footer>
             <p>🎄 Invite Friends & Spread the Christmas Spirit! 🎅</p>
-            <a href="https://wa.me/?text=Hey, check out this awesome Xmass Earn site!" class="whatsapp-btn" target="_blank">Share on WhatsApp</a>
         </footer>
     </div>
 
     <script>
         let balance = 0;
-        const completedTasks = new Set(); // Icyo bika tasks zakozwe
 
         // Fungura balance muri Local Storage igihe page ifunguwe
         const loadBalance = () => {
@@ -146,19 +143,19 @@
             document.getElementById("balance").textContent = balance;
         };
 
-        // Fungura link kandi wongere amafaranga
-        const completeTask = (url, reward) => {
-            if (completedTasks.has(url)) {
-                alert("❌ You have already completed this task!");
+        // Claim reward
+        const claimReward = (videoId, reward) => {
+            const claimBtn = document.getElementById(`claim-${videoId}`);
+            if (claimBtn.disabled) {
+                alert("❌ You have already claimed this reward!");
                 return;
             }
 
-            window.open(url, "_blank"); // Fungura link kuri YouTube
             balance += reward; // Yongeraho amafaranga
-            completedTasks.add(url); // Bika ko task yakozwe
             updateBalance();
             saveBalance(); // Bika amafaranga muri Local Storage
-            alert(`✅ Task completed! You earned ${reward} RWF.`);
+            claimBtn.disabled = true; // Fungura button
+            claimBtn.textContent = "Claimed";
         };
 
         // Bika balance muri Local Storage igihe yahindutse
@@ -166,20 +163,19 @@
             localStorage.setItem("balance", balance);
         };
 
-        // Kwerekana amabwiriza yo kubikuza
-        const showWithdrawInstructions = () => {
-            alert(
-                "TO GET YOUR MONEY, DO THE FOLLOWING:\n\n" +
-                "1. Subscribe to the channel.\n" +
-                "2. Watch the video till the end.\n" +
-                "3. Share to 10 groups, 50 people, and on your status.\n\n" +
-                "GOOD LUCK! Merry Xmass 🎄🎅"
-            );
+        // Fungura claim button nyuma y'iminota 2
+        const enableClaimButton = (videoId) => {
+            setTimeout(() => {
+                const claimBtn = document.getElementById(`claim-${videoId}`);
+                claimBtn.style.display = "inline-block";
+            }, 120000); // Iminota 2
         };
 
         // Fungura balance igihe page ifunguwe
         window.onload = () => {
             loadBalance();
+            enableClaimButton(1);
+            enableClaimButton(2);
         };
     </script>
 </body>
