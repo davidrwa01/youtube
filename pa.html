@@ -1,205 +1,136 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XMASS Earn 🎄🎅</title>
-    <script src="https://www.youtube.com/iframe_api"></script>
     <style>
-        
-    body {
-        font-family: 'Poppins', sans-serif;
-        margin: 0;
-        padding: 0;
-        text-align: center;
-        background: linear-gradient(to bottom, #000428, #004e92);
-        color: #fff;
-    }
-
-    #app {
-        max-width: 800px;
-        margin: auto;
-        padding: 20px;
-        background: rgba(255, 255, 255, 0.95);
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
-        border-radius: 15px;
-        color: #333;
-        animation: fadeIn 2s ease-in-out;
-    }
-
-    h2, h3 {
-        color: #004e92;
-        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    }
-
-    .intro-text {
-        font-size: 18px;
-        margin-bottom: 20px;
-        background-color: rgba(255, 255, 255, 0.9);
-        padding: 15px;
-        border-radius: 10px;
-        font-weight: bold;
-        color: #333;
-    }
-
-    .balance-part {
-        border: 2px solid #004e92;
-        border-radius: 10px;
-        padding: 10px;
-        margin-bottom: 20px;
-        background-color: rgba(255, 255, 255, 0.9);
-        color: #004e92;
-        font-weight: bold;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    #withdraw-btn {
-        background-color: #004e92;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 10px;
-        cursor: pointer;
-        font-size: 16px;
-        transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-
-    #withdraw-btn:hover {
-        background-color: #fff;
-        color: #004e92;
-        transform: scale(1.1);
-    }
-
-    .action-btn {
-        background-color: #004e92;
-        color: white;
-        font-size: 18px;
-        font-weight: bold;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 10px;
-        cursor: pointer;
-        margin: 10px;
-        transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-
-    .action-btn:hover {
-        background-color: #e63946;
-        transform: scale(1.1);
-    }
-
-    #videos {
-        margin: 20px 0;
-        background: rgba(0, 72, 146, 0.1);
-        padding: 15px;
-        border-radius: 10px;
-        border: 2px dashed #004e92;
-    }
-
-    .video-task {
-        margin: 15px 0;
-    }
-
-    iframe {
-        width: 100%;
-        height: 300px;
-        border: 3px solid #004e92;
-        border-radius: 10px;
-        transition: transform 0.3s ease;
-    }
-
-    iframe:hover {
-        transform: scale(1.05);
-    }
-
-    .watch-btn {
-        background-color: #004e92;
-        color: white;
-        font-size: 16px;
-        font-weight: bold;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 10px;
-        cursor: pointer;
-        margin-top: 10px;
-        transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-
-    .watch-btn:hover {
-        background-color: #e63946;
-        transform: scale(1.1);
-    }
-
-    footer {
-        margin-top: 20px;
-        padding: 15px;
-        background-color: #004e92;
-        color: #fff;
-        border-radius: 15px;
-        font-size: 16px;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: linear-gradient(to bottom, #000428, #004e92);
+            color: #fff;
         }
-        to {
-            opacity: 1;
-            transform: translateY(0);
+
+        #app {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            color: #333;
+            animation: fadeIn 2s ease-in-out;
         }
-    }
-</style>
-  
+
+        h2, h3 {
+            color: #004e92;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .balance-part {
+            border: 2px solid #004e92;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #004e92;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #withdraw-btn {
+            background-color: #004e92;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        #withdraw-btn:hover {
+            background-color: #fff;
+            color: #004e92;
+            transform: scale(1.1);
+        }
+
+        .action-btn {
+            background-color: #004e92;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background-color: #e63946;
+            transform: scale(1.1);
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #004e92;
+            color: #fff;
+            border-radius: 15px;
+            font-size: 16px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        <!-- Promo Section -->
-        <div class="promo-header">
-            🎁 Exclusive rewards for watching fun Christmas videos.
-        </div>
-        <div class="promo-text">
-            Watch the video for at least 2 minutes and make money.<br>
-            🛍️ Cash out your balance and treat yourself this Christmas!
+        <h2>Xmass Earn 🎄🎅</h2>
+        <div class="balance-part">
+            <div>
+                <h3><b>EARNINGS</b></h3>
+                <p>Balance: <span id="balance">0</span> RWF</p>
+            </div>
+            <button id="withdraw-btn" onclick="showWithdrawInstructions()">Withdraw</button>
         </div>
 
-        <!-- User Info -->
-        <div id="user-info">
-            <h2>Xmass Earn 🎄🎅</h2>
-            <div class="balance-part">
-                <div>
-                    <h3><b>EARNINGS</b></h3>
-                    <p>Balance: <span id="balance">0</span> RWF</p>
-                </div>
-                <button id="withdraw-btn" onclick="showWithdrawInstructions()">Withdraw</button>
-            </div>
-        </div>
+        <h3>Complete these tasks to earn money:</h3>
 
-        <!-- Video Section -->
-        <div id="videos">
-            <h3>Watch the video and wait for the claim button to earn money!</h3>
-            <div class="video-task" data-video-id="aHKonkJtUbo">
-                <iframe id="video-1" src="https://www.youtube.com/embed/ghNewoFtd9Q?enablejsapi=1" allowfullscreen></iframe>
-                <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
-            </div>
-            <div class="video-task" data-video-id="kKtsL8k0vZc">
-                <iframe id="video-2" src="https://www.youtube.com/embed/kKtsL8k0vZc?enablejsapi=1" allowfullscreen></iframe>
-                <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
-            </div>
-        </div>
+        <button class="action-btn" onclick="completeTask('https://youtube.com/@davidrwa250?si=5vvgeockC_UyERpM', 200)">
+            Subscribe & Earn 200 RWF
+        </button>
+        <button class="action-btn" onclick="completeTask('https://youtu.be/vYHhd6Efh-0?si=EtCUKgHDqJ9xWHcK', 100)">
+            Like & Earn 100 RWF
+        </button>
+        <button class="action-btn" onclick="completeTask('https://youtu.be/vYHhd6Efh-0?si=EtCUKgHDqJ9xWHcK', 150)">
+            Comment & Earn 150 RWF
+        </button>
 
-        <!-- Referral Section -->
         <footer>
-            <p class="footer-heading">🎄 Invite Friends & Spread the Christmas Spirit! 🎅</p>
+            <p>🎄 Invite Friends & Spread the Christmas Spirit! 🎅</p>
             <a href="https://wa.me/?text=Hey, check out this awesome Xmass Earn site!" class="whatsapp-btn" target="_blank">Share on WhatsApp</a>
         </footer>
     </div>
 
     <script>
         let balance = 0;
+        const completedTasks = new Set(); // Icyo bika tasks zakozwe
 
         // Fungura balance muri Local Storage igihe page ifunguwe
         const loadBalance = () => {
@@ -210,29 +141,29 @@
             updateBalance();
         };
 
-        // Bika balance muri Local Storage igihe yahindutse
-        const saveBalance = () => {
-            localStorage.setItem("balance", balance);
-        };
-
         // Fungura balance ku rubuga
         const updateBalance = () => {
             document.getElementById("balance").textContent = balance;
         };
 
-        // Igihe umuntu akoze "Claim"
-        const claimReward = (button) => {
-            balance += 150; // Ongera amafaranga kuri balance
+        // Fungura link kandi wongere amafaranga
+        const completeTask = (url, reward) => {
+            if (completedTasks.has(url)) {
+                alert("❌ You have already completed this task!");
+                return;
+            }
+
+            window.open(url, "_blank"); // Fungura link kuri YouTube
+            balance += reward; // Yongeraho amafaranga
+            completedTasks.add(url); // Bika ko task yakozwe
             updateBalance();
-            saveBalance(); // Bika amafaranga
-            button.disabled = true; // Fungura button ya "Claim"
-            button.textContent = "Claimed"; // Hindura text ya button
+            saveBalance(); // Bika amafaranga muri Local Storage
+            alert(`✅ Task completed! You earned ${reward} RWF.`);
         };
 
-        // Fungura balance igihe page ifunguwe
-        window.onload = () => {
-            loadBalance();
-            alert("🎁 Exclusive rewards for watching fun Christmas videos!\nWatch the video for at least 2 minutes and make money.\n🛍️ Cash out your balance and treat yourself this Christmas!");
+        // Bika balance muri Local Storage igihe yahindutse
+        const saveBalance = () => {
+            localStorage.setItem("balance", balance);
         };
 
         // Kwerekana amabwiriza yo kubikuza
@@ -246,45 +177,10 @@
             );
         };
 
-        // Igihe video irangiye cyangwa itangiye gukinwa
-        let currentPlayer = null;
-
-        function onYouTubeIframeAPIReady() {
-            const videoTasks = document.querySelectorAll('.video-task');
-
-            videoTasks.forEach(task => {
-                const iframe = task.querySelector('iframe');
-                const claimBtn = task.querySelector('.watch-btn');
-                const videoId = task.getAttribute('data-video-id');
-
-                let watchTime = 0;
-                let interval;
-                const player = new YT.Player(iframe.id, {
-                    videoId: videoId,
-                    events: {
-                        'onStateChange': function (event) {
-                            if (event.data === YT.PlayerState.PLAYING) {
-                                if (currentPlayer && currentPlayer !== player) {
-                                    currentPlayer.pauseVideo();
-                                }
-                                currentPlayer = player;
-
-                                // Gukurikirana igihe cyo kureba video
-                                interval = setInterval(() => {
-                                    watchTime++;
-                                    if (watchTime >= 120) { // Claim button nyuma y'iminota 2
-                                        claimBtn.style.display = 'inline-block';
-                                        clearInterval(interval);
-                                    }
-                                }, 1000);
-                            } else if (event.data === YT.PlayerState.ENDED) {
-                                clearInterval(interval);
-                            }
-                        }
-                    }
-                });
-            });
-        }
+        // Fungura balance igihe page ifunguwe
+        window.onload = () => {
+            loadBalance();
+        };
     </script>
 </body>
 </html>
