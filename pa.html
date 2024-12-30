@@ -1,252 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XMASS Earn 🎄🎅</title>
-    <script src="https://www.youtube.com/iframe_api"></script>
-    <style>
-        /* Basic Styling */
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            background: linear-gradient(to bottom, #000428, #004e92);
-            color: #fff;
-        }
+<!-- Add this inside the 'video-task' div for each video -->
+<button class="claim-btn" style="display: none;" onclick="claimReward(this)">Claim Reward</button>
 
-        #app {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            color: #333;
-            animation: fadeIn 2s ease-in-out;
-        }
+<style>
+    /* Style for the Claim Button */
+    .claim-btn {
+        background-color: #e63946;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-top: 15px;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        display: none; /* Hidden by default */
+    }
 
-        h2, h3 {
-            color: #004e92;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-        }
+    .claim-btn:hover {
+        background-color: #f1faee;
+        color: #e63946;
+        transform: scale(1.1);
+    }
+</style>
 
-        .balance-part {
-            border: 2px solid #004e92;
-            border-radius: 10px;
-            padding: 10px;
-            margin-bottom: 20px;
-            background-color: rgba(255, 255, 255, 0.9);
-            color: #004e92;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+<script>
+    // Function to show the claim button after 2 minutes of watching
+    const claimReward = (button) => {
+        balance += 150; // Add 150 to the balance when the user clicks
+        updateBalance();
+        saveBalance();
+        button.disabled = true;
+        button.textContent = "Claimed"; // Change button text to "Claimed"
+        alert("🎁 Congratulations! You have claimed your reward!");
+    };
 
-        #withdraw-btn {
-            background-color: #004e92;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
+    // Update the video iframe logic to show the claim button after 2 minutes
+    function onYouTubeIframeAPIReady() {
+        const videoTasks = document.querySelectorAll('.video-task');
 
-        #withdraw-btn:hover {
-            background-color: #fff;
-            color: #004e92;
-            transform: scale(1.1);
-        }
+        videoTasks.forEach(task => {
+            const iframe = task.querySelector('iframe');
+            const claimBtn = task.querySelector('.claim-btn');
+            const videoId = task.getAttribute('data-video-id');
 
-        .action-btn {
-            background-color: #004e92;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            margin: 10px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-
-        .action-btn:hover {
-            background-color: #e63946;
-            transform: scale(1.1);
-        }
-
-        iframe {
-            width: 100%;
-            height: 300px;
-            border: 3px solid #004e92;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        iframe:hover {
-            transform: scale(1.05);
-        }
-
-        footer {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #004e92;
-            color: #fff;
-            border-radius: 15px;
-            font-size: 16px;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
-</head>
-<body>
-    <div id="app">
-        <div class="promo-header">
-            🎁 Exclusive rewards for watching fun Christmas videos.
-        </div>
-        <div class="promo-text">
-            Watch the video for at least 2 minutes and make money.<br>
-            🛍️ Cash out your balance and treat yourself this Christmas!
-        </div>
-
-        <div id="user-info">
-            <h2>Xmass Earn 🎄🎅</h2>
-            <div class="balance-part">
-                <div>
-                    <h3><b>EARNINGS</b></h3>
-                    <p>Balance: <span id="balance">0</span> RWF</p>
-                </div>
-                <button id="withdraw-btn" onclick="showWithdrawInstructions()">Withdraw</button>
-            </div>
-        </div>
-
-        <div id="videos">
-            <h3>Watch the video and wait for the claim button to earn money!</h3>
-            <div class="video-task" data-video-id="aHKonkJtUbo">
-                <iframe id="video-1" src="https://www.youtube.com/embed/0yyjOTzJvQ8?enablejsapi=1" allowfullscreen></iframe>
-                <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
-            </div>
-        </div>
-
-        <!-- Like, Comment, Subscribe Section -->
-        <div id="actions">
-            <h3>Complete tasks to earn more!</h3>
-            <button class="action-btn" onclick="handleAction('like')">LIKE</button>
-            <button class="action-btn" onclick="handleAction('comment')">COMMENT</button>
-            <button class="action-btn" onclick="handleAction('subscribe')">SUBSCRIBE</button>
-        </div>
-
-        <footer>
-            <p class="footer-heading">🎄 Invite Friends & Spread the Christmas Spirit! 🎅</p>
-            <a href="https://wa.me/?text=Hey, check out this awesome Xmass Earn site!" class="whatsapp-btn" target="_blank">Share on WhatsApp</a>
-        </footer>
-    </div>
-
-    <script>
-        let balance = 0;
-
-        // Fungura balance muri Local Storage igihe page ifunguwe
-        const loadBalance = () => {
-            const savedBalance = localStorage.getItem("balance");
-            if (savedBalance) {
-                balance = parseInt(savedBalance, 10); // Hindura amafaranga aba integer
-            }
-            updateBalance();
-        };
-
-        // Bika balance muri Local Storage igihe yahindutse
-        const saveBalance = () => {
-            localStorage.setItem("balance", balance);
-        };
-
-        // Fungura balance ku rubuga
-        const updateBalance = () => {
-            document.getElementById("balance").textContent = balance;
-        };
-
-        // Handle Like, Comment, Subscribe actions
-        const handleAction = (action) => {
-            if (localStorage.getItem(`${action}Clicked`)) {
-                alert(`You already clicked on ${action} once. Please wait.`);
-                return;
-            }
-
-            // Add money to balance
-            balance += 100; // Add 100 RWF for each action
-            updateBalance();
-            saveBalance();
-
-            // Mark action as clicked
-            localStorage.setItem(`${action}Clicked`, true);
-
-            // Redirect to YouTube link
-            if (action === 'like') {
-                window.location.href = 'https://youtu.be/0yyjOTzJvQ8?si=IX0A3_C6Up3XQ-eH';
-            } else if (action === 'comment') {
-                window.location.href = 'https://youtu.be/0yyjOTzJvQ8?si=IX0A3_C6Up3XQ-eH';
-            } else if (action === 'subscribe') {
-                window.location.href = 'https://youtube.com/@davidrwa250?si=5vvgeockC_UyERpM';
-            }
-        };
-
-        // Igihe video irangiye cyangwa itangiye gukinwa
-        let currentPlayer = null;
-
-        function onYouTubeIframeAPIReady() {
-            const videoTasks = document.querySelectorAll('.video-task');
-
-            videoTasks.forEach(task => {
-                const iframe = task.querySelector('iframe');
-                const claimBtn = task.querySelector('.watch-btn');
-                const videoId = task.getAttribute('data-video-id');
-
-                let watchTime = 0;
-                let interval;
-                const player = new YT.Player(iframe.id, {
-                    videoId: videoId,
-                    events: {
-                        'onStateChange': function (event) {
-                            if (event.data === YT.PlayerState.PLAYING) {
-                                if (currentPlayer && currentPlayer !== player) {
-                                    currentPlayer.pauseVideo();
-                                }
-                                currentPlayer = player;
-
-                                // Gukurikirana igihe cyo kureba video
-                                interval = setInterval(() => {
-                                    watchTime++;
-                                    if (watchTime >= 120) { // Claim button nyuma y'iminota 2
-                                        claimBtn.style.display = 'inline-block';
-                                        clearInterval(interval);
-                                    }
-                                }, 1000);
-                            } else if (event.data === YT.PlayerState.ENDED) {
-                                clearInterval(interval);
+            let watchTime = 0;
+            let interval;
+            const player = new YT.Player(iframe.id, {
+                videoId: videoId,
+                events: {
+                    'onStateChange': function (event) {
+                        if (event.data === YT.PlayerState.PLAYING) {
+                            if (currentPlayer && currentPlayer !== player) {
+                                currentPlayer.pauseVideo();
                             }
+                            currentPlayer = player;
+
+                            // Track the watch time
+                            interval = setInterval(() => {
+                                watchTime++;
+                                if (watchTime >= 120) { // Show button after 2 minutes
+                                    claimBtn.style.display = 'inline-block'; // Show claim button
+                                    clearInterval(interval);
+                                }
+                            }, 1000);
+                        } else if (event.data === YT.PlayerState.ENDED) {
+                            clearInterval(interval);
                         }
                     }
-                });
+                }
             });
-        }
-
-        window.onload = () => {
-            loadBalance();
-            alert("🎁 Exclusive rewards for watching fun Christmas videos!\nWatch the video for at least 2 minutes and make money.\n🛍️ Cash out your balance and treat yourself this Christmas!");
-        };
-    </script>
-</body>
-</html>
+        });
+    }
+</script>
