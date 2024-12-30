@@ -43,7 +43,7 @@
             justify-content: space-between;
         }
 
-        .video-section {
+        .task-section {
             margin: 20px 0;
             padding: 15px;
             background: rgba(255, 255, 255, 0.9);
@@ -108,17 +108,32 @@
             </div>
         </div>
 
-        <h3>Watch videos to earn money:</h3>
+        <!-- Tasks Section -->
+        <h3>Complete tasks to earn money:</h3>
 
-        <!-- Video Section -->
-        <div class="video-section" id="video-1">
-            <iframe src="https://www.youtube.com/embed/vYHhd6Efh-0?enablejsapi=1" allowfullscreen></iframe>
-            <button class="claim-btn" id="claim-1" onclick="claimReward(1, 300)">Claim 300 RWF</button>
+        <!-- Like Task -->
+        <div class="task-section">
+            <h4>1. Like the video</h4>
+            <button class="claim-btn" id="like-task" onclick="completeTask('like', 100, 'https://youtu.be/vYHhd6Efh-0')">Like and Earn 100 RWF</button>
         </div>
 
-        <div class="video-section" id="video-2">
-            <iframe src="https://www.youtube.com/embed/kKtsL8k0vZc?enablejsapi=1" allowfullscreen></iframe>
-            <button class="claim-btn" id="claim-2" onclick="claimReward(2, 300)">Claim 300 RWF</button>
+        <!-- Subscribe Task -->
+        <div class="task-section">
+            <h4>2. Subscribe to the channel</h4>
+            <button class="claim-btn" id="subscribe-task" onclick="completeTask('subscribe', 200, 'https://youtube.com/@davidrwa250')">Subscribe and Earn 200 RWF</button>
+        </div>
+
+        <!-- Comment Task -->
+        <div class="task-section">
+            <h4>3. Comment on the video</h4>
+            <button class="claim-btn" id="comment-task" onclick="completeTask('comment', 150, 'https://youtu.be/vYHhd6Efh-0')">Comment and Earn 150 RWF</button>
+        </div>
+
+        <!-- Watch Video Section -->
+        <div class="task-section" id="video-1">
+            <h4>4. Watch the video</h4>
+            <iframe src="https://www.youtube.com/embed/vYHhd6Efh-0?enablejsapi=1" allowfullscreen></iframe>
+            <button class="claim-btn" id="claim-1" onclick="claimReward(1, 300)">Claim 300 RWF</button>
         </div>
 
         <footer>
@@ -133,7 +148,7 @@
         const loadBalance = () => {
             const savedBalance = localStorage.getItem("balance");
             if (savedBalance) {
-                balance = parseInt(savedBalance, 10); // Hindura amafaranga aba integer
+                balance = parseInt(savedBalance, 10);
             }
             updateBalance();
         };
@@ -143,7 +158,23 @@
             document.getElementById("balance").textContent = balance;
         };
 
-        // Claim reward
+        // Complete a task (Like, Subscribe, Comment)
+        const completeTask = (taskId, reward, link) => {
+            const taskBtn = document.getElementById(`${taskId}-task`);
+            if (taskBtn.disabled) {
+                alert("❌ You have already completed this task!");
+                return;
+            }
+
+            balance += reward; // Yongeraho amafaranga
+            updateBalance();
+            saveBalance(); // Bika amafaranga muri Local Storage
+            taskBtn.disabled = true; // Fungura button
+            taskBtn.textContent = "Completed";
+            window.open(link, '_blank'); // Fungura link kuri YouTube
+        };
+
+        // Claim reward for watching video
         const claimReward = (videoId, reward) => {
             const claimBtn = document.getElementById(`claim-${videoId}`);
             if (claimBtn.disabled) {
@@ -151,16 +182,11 @@
                 return;
             }
 
-            balance += reward; // Yongeraho amafaranga
+            balance += reward;
             updateBalance();
-            saveBalance(); // Bika amafaranga muri Local Storage
-            claimBtn.disabled = true; // Fungura button
+            saveBalance();
+            claimBtn.disabled = true;
             claimBtn.textContent = "Claimed";
-        };
-
-        // Bika balance muri Local Storage igihe yahindutse
-        const saveBalance = () => {
-            localStorage.setItem("balance", balance);
         };
 
         // Fungura claim button nyuma y'iminota 2
@@ -175,7 +201,11 @@
         window.onload = () => {
             loadBalance();
             enableClaimButton(1);
-            enableClaimButton(2);
+        };
+
+        // Bika balance muri Local Storage
+        const saveBalance = () => {
+            localStorage.setItem("balance", balance);
         };
     </script>
 </body>
