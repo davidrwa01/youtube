@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XMASS Earn 🎄🎅</title>
-    <script src="https://www.youtube.com/iframe_api"></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -33,12 +32,6 @@
             color: #e63946;
             font-family: 'Pacifico', cursive;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-        }
-
-        h3 {
-            color: #e63946;
-            font-size: 24px;
-            margin-top: 10px;
         }
 
         .intro-text {
@@ -81,14 +74,6 @@
             box-shadow: 0px 0px 10px rgba(230, 57, 70, 0.8);
         }
 
-        iframe {
-            width: 100%;
-            height: 315px;
-            border: 3px solid #e63946;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-
         .action-btn {
             background-color: #e63946;
             color: white;
@@ -119,22 +104,6 @@
             font-size: 20px;
             color: #333;
         }
-
-        .whatsapp-btn {
-            background-color: #25D366;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-top: 15px;
-            text-decoration: none;
-        }
-
-        .whatsapp-btn:hover {
-            background-color: #128C7E;
-        }
     </style>
 </head>
 <body>
@@ -155,19 +124,15 @@
             <button id="withdraw-btn" onclick="showWithdrawInstructions()">Withdraw</button>
         </div>
 
-        <!-- Video Section -->
-        <div id="videos">
-            <h3>Watch the video and complete actions to earn money!</h3>
-            <iframe id="video-1" src="https://www.youtube.com/embed/vYHhd6Efh-0?enablejsapi=1" allowfullscreen></iframe>
-            <button class="action-btn" onclick="rewardForAction('like')">Like Video (+50 RWF)</button>
-            <button class="action-btn" onclick="rewardForAction('comment')">Comment (+50 RWF)</button>
-            <button class="action-btn" onclick="rewardForAction('subscribe')">Subscribe (+100 RWF)</button>
-        </div>
+        <!-- Actions Section -->
+        <h3>Complete these actions to earn money!</h3>
+        <button class="action-btn" onclick="performAction('like')">Like Video (+50 RWF)</button>
+        <button class="action-btn" onclick="performAction('comment')">Comment (+50 RWF)</button>
+        <button class="action-btn" onclick="performAction('subscribe')">Subscribe (+100 RWF)</button>
 
         <!-- Referral Section -->
         <footer>
             <p>🎄 Invite Friends & Spread the Christmas Spirit! 🎅</p>
-            <a href="https://wa.me/?text=Hey, check out this awesome Xmass Earn site!" class="whatsapp-btn" target="_blank">Share on WhatsApp</a>
         </footer>
     </div>
 
@@ -190,16 +155,26 @@
             document.getElementById("balance").textContent = balance;
         };
 
-        const rewardForAction = (action) => {
+        const performAction = (action) => {
             let reward = 0;
-            if (action === "like") reward = 50;
-            if (action === "comment") reward = 50;
-            if (action === "subscribe") reward = 100;
+            let url = "";
 
+            if (action === "like") {
+                reward = 50;
+                url = "https://youtu.be/vYHhd6Efh-0?si=EtCUKgHDqJ9xWHcK";
+            } else if (action === "comment") {
+                reward = 50;
+                url = "https://youtu.be/vYHhd6Efh-0?si=EtCUKgHDqJ9xWHcK";
+            } else if (action === "subscribe") {
+                reward = 100;
+                url = "https://youtube.com/@davidrwa250?si=5vvgeockC_UyERpM";
+            }
+
+            window.open(url, "_blank");
             balance += reward;
             updateBalance();
             saveBalance();
-            alert(`🎉 Thank you for completing the action! ${reward} RWF added to your balance.`);
+            alert(`🎉 Action completed! ${reward} RWF added to your balance.`);
         };
 
         const showWithdrawInstructions = () => {
