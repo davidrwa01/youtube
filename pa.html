@@ -110,31 +110,27 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-
         }
 
+        .claim-btn {
+            background-color: #e63946;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            display: none; /* Hidden by default */
+        }
 
- .claim-btn {
-        background-color: #e63946;
-        color: white;
-        font-size: 18px;
-        font-weight: bold;
-        border: none;
-        padding: 12px 25px;
-        border-radius: 10px;
-        cursor: pointer;
-        margin-top: 15px;
-        transition: transform 0.3s ease, background-color 0.3s ease;
-        display: none; /* Hidden by default */
-    }
-
-    .claim-btn:hover {
-        background-color: #f1faee;
-        color: #e63946;
-        transform: scale(1.1);
-    }
-
-
+        .claim-btn:hover {
+            background-color: #f1faee;
+            color: #e63946;
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
@@ -162,12 +158,10 @@
             <h3>Watch the video and wait for the claim button to earn money!</h3>
             <div class="video-task" data-video-id="aHKonkJtUbo">
                 <iframe id="video-1" src="https://www.youtube.com/embed/0yyjOTzJvQ8?enablejsapi=1" allowfullscreen></iframe>
-
-<button class="claim-btn" style="display: none;" onclick="claimReward(this)">Claim Reward</button>
->
+                <button class="claim-btn" onclick="claimReward(this)">Claim Reward</button>
+            </div>
         </div>
 
-        <!-- Like, Comment, Subscribe Section -->
         <div id="actions">
             <h3>Complete tasks to earn more!</h3>
             <button class="action-btn" onclick="handleAction('like')">LIKE</button>
@@ -184,41 +178,33 @@
     <script>
         let balance = 0;
 
-        // Fungura balance muri Local Storage igihe page ifunguwe
         const loadBalance = () => {
             const savedBalance = localStorage.getItem("balance");
             if (savedBalance) {
-                balance = parseInt(savedBalance, 10); // Hindura amafaranga aba integer
+                balance = parseInt(savedBalance, 10);
             }
             updateBalance();
         };
 
-        // Bika balance muri Local Storage igihe yahindutse
         const saveBalance = () => {
             localStorage.setItem("balance", balance);
         };
 
-        // Fungura balance ku rubuga
         const updateBalance = () => {
             document.getElementById("balance").textContent = balance;
         };
 
-        // Handle Like, Comment, Subscribe actions
         const handleAction = (action) => {
             if (localStorage.getItem(`${action}Clicked`)) {
                 alert(`You already clicked on ${action} once. Please wait.`);
                 return;
             }
 
-            // Add money to balance
-            balance += 100; // Add 100 RWF for each action
+            balance += 100;
             updateBalance();
             saveBalance();
-
-            // Mark action as clicked
             localStorage.setItem(`${action}Clicked`, true);
 
-            // Redirect to YouTube link
             if (action === 'like') {
                 window.location.href = 'https://youtu.be/0yyjOTzJvQ8?si=IX0A3_C6Up3XQ-eH';
             } else if (action === 'comment') {
@@ -228,103 +214,23 @@
             }
         };
 
-        // Igihe video irangiye cyangwa itangiye gukinwa
-        let currentPlayer = null;
+        const claimReward = (button) => {
+            balance += 150;
+            updateBalance();
+            saveBalance();
+            button.disabled = true;
+            button.textContent = "Claimed";
+            alert("🎁 Congratulations! You have claimed your reward!");
+        };
 
-        function onYouTubeIframeAPIReady() {
-            const videoTasks = document.querySelectorAll('.video-task');
-
-            videoTasks.forEach(task => {
-                const iframe = task.querySelector('iframe');
-                const claimBtn = task.querySelector('.watch-btn');
-                const videoId = task.getAttribute('data-video-id');
-
-                let watchTime = 0;
-                let interval;
-                const player = new YT.Player(iframe.id, {
-                    videoId: videoId,
-                    events: {
-                        'onStateChange': function (event) {
-                            if (event.data === YT.PlayerState.PLAYING) {
-                                if (currentPlayer && currentPlayer !== player) {
-                                    currentPlayer.pauseVideo();
-                                }
-                                currentPlayer = player;
-
-                                // Gukurikirana igihe cyo kureba video
-                                interval = setInterval(() => {
-                                    watchTime++;
-                                    if (watchTime >= 120) { // Claim button nyuma y'iminota 2
-                                        claimBtn.style.display = 'inline-block';
-                                        clearInterval(interval);
-                                    }
-                                }, 1000);
-                            } else if (event.data === YT.PlayerState.ENDED) {
-                                clearInterval(interval);
-                            }
-                        }
-                    }
-                });
-            });
-        }
+        const showWithdrawInstructions = () => {
+            alert("⚠️ Withdrawal Instructions:\n1. Minimum withdrawal balance: 500 RWF.\n2. Send your payment request via WhatsApp at +250 78 000 0000.\n3. Provide your account details for payment.\n\n🎄 Enjoy your Christmas rewards!");
+        };
 
         window.onload = () => {
             loadBalance();
             alert("🎁 Exclusive rewards for watching fun Christmas videos!\nWatch the video for at least 2 minutes and make money.\n🛍️ Cash out your balance and treat yourself this Christmas!");
         };
-
-
-
-    // Function to show the claim button after 2 minutes of watching
-    const claimReward = (button) => {
-        balance += 150; // Add 150 to the balance when the user clicks
-        updateBalance();
-        saveBalance();
-        button.disabled = true;
-        button.textContent = "Claimed"; // Change button text to "Claimed"
-        alert("🎁 Congratulations! You have claimed your reward!");
-    };
-
-    // Update the video iframe logic to show the claim button after 2 minutes
-    function onYouTubeIframeAPIReady() {
-        const videoTasks = document.querySelectorAll('.video-task');
-
-        videoTasks.forEach(task => {
-            const iframe = task.querySelector('iframe');
-            const claimBtn = task.querySelector('.claim-btn');
-            const videoId = task.getAttribute('data-video-id');
-
-            let watchTime = 0;
-            let interval;
-            const player = new YT.Player(iframe.id, {
-                videoId: videoId,
-                events: {
-                    'onStateChange': function (event) {
-                        if (event.data === YT.PlayerState.PLAYING) {
-                            if (currentPlayer && currentPlayer !== player) {
-                                currentPlayer.pauseVideo();
-                            }
-                            currentPlayer = player;
-
-                            // Track the watch time
-                            interval = setInterval(() => {
-                                watchTime++;
-                                if (watchTime >= 120) { // Show button after 2 minutes
-                                    claimBtn.style.display = 'inline-block'; // Show claim button
-                                    clearInterval(interval);
-                                }
-                            }, 1000);
-                        } else if (event.data === YT.PlayerState.ENDED) {
-                            clearInterval(interval);
-                        }
-                    }
-                }
-            });
-        });
-    }
-
-
-
     </script>
 </body>
-</html>to
+</html>
