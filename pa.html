@@ -1,194 +1,146 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Year Earn 2025 🎉✨</title>
+    <title>XMASS Earn 🎄🎅</title>
+    <script src="https://www.youtube.com/iframe_api"></script>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            background: linear-gradient(to bottom, #000428, #004e92);
-            color: #fff;
-        }
-
-        #app {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            color: #333;
-            text-align: center;
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        h2 {
-            color: #004e92;
-            font-family: 'Pacifico', cursive;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-            animation: bounce 2s infinite;
-        }
-
-        .intro-text {
-            font-size: 18px;
-            margin-bottom: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 15px;
-            border-radius: 10px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .balance-part {
-            border: 2px solid #004e92;
-            border-radius: 10px;
-            padding: 10px;
-            margin-bottom: 20px;
-            background-color: rgba(255, 255, 255, 0.9);
-            color: #004e92;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        #withdraw-btn {
-            background-color: #004e92;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-
-        #withdraw-btn:hover {
-            background-color: #fff;
-            color: #004e92;
-            transform: scale(1.1);
-        }
-
-        .action-btn {
-            background-color: #004e92;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-
-        .action-btn:hover {
-            background-color: #e63946;
-            transform: scale(1.1);
-        }
-
-        footer {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #004e92;
-            color: #fff;
-            border-radius: 15px;
-            font-size: 16px;
-        }
-
-        #balance {
-            font-weight: bold;
-            font-size: 20px;
-            color: #333;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
+        /* CSS iracyari nka mbere */
+        /* ... */
     </style>
 </head>
 <body>
     <div id="app">
-        <h2>New Year Earn 2025 🎉✨</h2>
-        <p class="intro-text">
-            🎁 Earn money by watching videos, liking, commenting, and subscribing!<br>
-            🛍️ Start fresh and achieve your goals this year!
-        </p>
-
-        <div class="balance-part">
-            <div>
-                <h3>EARNINGS</h3>
-                <p>Balance: <span id="balance">0</span> RWF</p>
-            </div>
-            <button id="withdraw-btn" onclick="showWithdrawInstructions()">Withdraw</button>
+        <!-- Promo Section -->
+        <div class="promo-header">
+            🎁 Exclusive rewards for watching fun Christmas videos.
+        </div>
+        <div class="promo-text">
+            Watch the video for at least 2 minutes and make money.<br>
+            🛍️ Cash out your balance and treat yourself this Christmas!
         </div>
 
-        <h3>Complete these actions to earn money!</h3>
-        <button class="action-btn" onclick="performAction('like')">Like Video (+50 RWF)</button>
-        <button class="action-btn" onclick="performAction('comment')">Comment (+50 RWF)</button>
-        <button class="action-btn" onclick="performAction('subscribe')">Subscribe (+100 RWF)</button>
+        <!-- User Info -->
+        <div id="user-info">
+            <h2>Xmass Earn 🎄🎅</h2>
+            <div class="balance-part">
+                <div>
+                    <h3><b>EARNINGS</b></h3>
+                    <p>Balance: <span id="balance">0</span> RWF</p>
+                </div>
+                <button id="withdraw-btn" onclick="showWithdrawInstructions()">Withdraw</button>
+            </div>
+        </div>
 
+        <!-- Video Section -->
+        <div id="videos">
+            <h3>Watch the video and wait for the claim button to earn money!</h3>
+            <div class="video-task" data-video-id="aHKonkJtUbo">
+                <iframe id="video-1" src="https://www.youtube.com/embed/ghNewoFtd9Q?enablejsapi=1" allowfullscreen></iframe>
+                <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
+            </div>
+            <div class="video-task" data-video-id="kKtsL8k0vZc">
+                <iframe id="video-2" src="https://www.youtube.com/embed/kKtsL8k0vZc?enablejsapi=1" allowfullscreen></iframe>
+                <button class="watch-btn" onclick="claimReward(this)">Claim Reward</button>
+            </div>
+        </div>
+
+        <!-- Referral Section -->
         <footer>
-            <p>🎆 Spread the New Year Spirit with Friends! 🎇</p>
+            <p class="footer-heading">🎄 Invite Friends & Spread the Christmas Spirit! 🎅</p>
+            <a href="https://wa.me/?text=Hey, check out this awesome Xmass Earn site!" class="whatsapp-btn" target="_blank">Share on WhatsApp</a>
         </footer>
     </div>
 
     <script>
         let balance = 0;
 
+        // Fungura balance muri Local Storage igihe page ifunguwe
         const loadBalance = () => {
-            balance = 0; // Reset to zero for the new year
+            const savedBalance = localStorage.getItem("balance");
+            if (savedBalance) {
+                balance = parseInt(savedBalance, 10); // Hindura amafaranga aba integer
+            }
             updateBalance();
         };
 
+        // Bika balance muri Local Storage igihe yahindutse
+        const saveBalance = () => {
+            localStorage.setItem("balance", balance);
+        };
+
+        // Fungura balance ku rubuga
         const updateBalance = () => {
             document.getElementById("balance").textContent = balance;
         };
 
-        const performAction = (action) => {
-            let reward = 0;
-
-            if (action === "like") reward = 50;
-            else if (action === "comment") reward = 50;
-            else if (action === "subscribe") reward = 100;
-
-            balance += reward;
+        // Igihe umuntu akoze "Claim"
+        const claimReward = (button) => {
+            balance += 150; // Ongera amafaranga kuri balance
             updateBalance();
-            alert(`🎉 Action completed! ${reward} RWF added to your balance.`);
+            saveBalance(); // Bika amafaranga
+            button.disabled = true; // Fungura button ya "Claim"
+            button.textContent = "Claimed"; // Hindura text ya button
         };
 
+        // Fungura balance igihe page ifunguwe
+        window.onload = () => {
+            loadBalance();
+            alert("🎁 Exclusive rewards for watching fun Christmas videos!\nWatch the video for at least 2 minutes and make money.\n🛍️ Cash out your balance and treat yourself this Christmas!");
+        };
+
+        // Kwerekana amabwiriza yo kubikuza
         const showWithdrawInstructions = () => {
             alert(
-                "1. REBA VIDEO YOSE UYIRANGIZE\n" +
-                "2. KANDA KURI LIKE\n" +
-                "3. KANDA KURI COMMENT\n" +
-                "4. KANDA KURI SUBSCRIBE\n" +
-                "5. SHARINGA KURI WHATSAPP NO KURI FACEBOOK UBWIRE INSHUTI ZAWE 50 NA GROUP 10\n" +
-                "📍 Amafaranga muzayabona kuva ku 05/01/2025!"
+                "TO GET YOUR MONEY, DO THE FOLLOWING:\n\n" +
+                "1. Subscribe to the channel.\n" +
+                "2. Watch the video till the end.\n" +
+                "3. Share to 10 groups, 50 people, and on your status.\n\n" +
+                "GOOD LUCK! Merry Xmass 🎄🎅"
             );
         };
 
-        window.onload = loadBalance;
+        // Igihe video irangiye cyangwa itangiye gukinwa
+        let currentPlayer = null;
+
+        function onYouTubeIframeAPIReady() {
+            const videoTasks = document.querySelectorAll('.video-task');
+
+            videoTasks.forEach(task => {
+                const iframe = task.querySelector('iframe');
+                const claimBtn = task.querySelector('.watch-btn');
+                const videoId = task.getAttribute('data-video-id');
+
+                let watchTime = 0;
+                let interval;
+                const player = new YT.Player(iframe.id, {
+                    videoId: videoId,
+                    events: {
+                        'onStateChange': function (event) {
+                            if (event.data === YT.PlayerState.PLAYING) {
+                                if (currentPlayer && currentPlayer !== player) {
+                                    currentPlayer.pauseVideo();
+                                }
+                                currentPlayer = player;
+
+                                // Gukurikirana igihe cyo kureba video
+                                interval = setInterval(() => {
+                                    watchTime++;
+                                    if (watchTime >= 120) { // Claim button nyuma y'iminota 2
+                                        claimBtn.style.display = 'inline-block';
+                                        clearInterval(interval);
+                                    }
+                                }, 1000);
+                            } else if (event.data === YT.PlayerState.ENDED) {
+                                clearInterval(interval);
+                            }
+                        }
+                    }
+                });
+            });
+        }
     </script>
 </body>
 </html>
