@@ -323,6 +323,44 @@
         });
     }
 
+
+// Function to show withdrawal instructions with a custom alert
+const showWithdrawInstructions = () => {
+    const message = `
+        MWIRIWE NEZA 
+        KUBIKUZA Bizatangira Kuva Kuri TARIKI 05/01/2025
+        
+        IBISABWA:
+        1. SHARI ABANTU 100 PEOPLE
+        2. GROUP 20
+        3. KORA SUBSCRIBE
+        4. KORA LIKE
+        5. KORA COMMENT
+        BYOSE KURI VIDEO ZOSE📍
+    `;
+    
+    const alertBox = document.createElement('div');
+    alertBox.style.backgroundColor = '#004e92'; // Blue background
+    alertBox.style.color = 'black'; // Black text
+    alertBox.style.padding = '20px';
+    alertBox.style.borderRadius = '10px';
+    alertBox.style.fontSize = '18px';
+    alertBox.style.fontWeight = 'bold';
+    alertBox.style.marginTop = '20px';
+    alertBox.style.textAlign = 'center';
+    alertBox.style.maxWidth = '600px';
+    alertBox.style.margin = 'auto';
+    alertBox.innerText = message;
+
+    document.body.appendChild(alertBox);
+
+    // Auto-remove the alert after 10 seconds
+    setTimeout(() => {
+        alertBox.remove();
+    }, 10000);
+};
+
+
     </script>
 </body>
 </html>
